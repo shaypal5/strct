@@ -15,13 +15,14 @@ README_RST = ''
 with open('README.rst') as f:
     README_RST = f.read()
 
-INSTALL_REQUIRES = ['sortedcontainers']
-TEST_REQUIRES = ['pytest', 'coverage', 'pytest-cov']
+INSTALL_REQUIRES = []
+TEST_REQUIRES = ['sortedcontainers', 'pytest', 'coverage', 'pytest-cov']
 
 
 setup(
     name='strct',
-    description=("A small pure-python package for utility decorators."),
+    description=("A small pure-python package for data structure related
+                 "utility functions."),
     long_description=README_RST,
     author="Shay Palachy",
     author_email="shaypal5@gmail.com",
