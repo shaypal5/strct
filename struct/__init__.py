@@ -1,11 +1,11 @@
 """Utility pure-Python 3 decorators."""
 
-import structura.dict
-import structura.list
-import structura.set
-import structura.sortedlist
+import strct.dict
+import strct.list
+import strct.set
+import strct.sortedlist
 try:
-    del structura
+    del strct
 except NameError: # pragma: no cover
     pass
 

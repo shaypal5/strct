@@ -11,6 +11,6 @@ before_install:
   - pip install codecov
 install:
   - pip install ".[test]"
-script: pytest --cov=structura
+script: pytest --cov=strct
 after_success:
   - codecov

@@ -1,2 +1,2 @@
 include versioneer.py
-include structura/_version.py
+include strct/_version.py
