@@ -36,7 +36,7 @@ setup(
     },
     setup_requires=INSTALL_REQUIRES,
     platforms=['any'],
-    keywords='python decorator decorators',
+    keywords='python list dict set sortedlist',
     classifiers=[
         # Trove classifiers
         # (https://pypi.python.org/pypi?%3Aaction=list_classifiers)
