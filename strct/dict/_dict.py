@@ -26,13 +26,17 @@ def get_first_val(key_tuple, dict_obj):
     1
     >>> get_first_val(('b', 'c', 'a'), dict_obj)
     2
+    >>> get_first_val(('e'), dict_obj)
+    Traceback (most recent call last):
+     ...
+    KeyError: 'None of the provided keys was found'
     """
     for key in key_tuple:
         try:
             return dict_obj[key]
         except KeyError:
             pass
-    raise KeyError
+    raise KeyError('None of the provided keys was found')
 
 
 def any_in_dict(key_tuple, dict_obj):
@@ -113,12 +117,13 @@ def safe_nested_val(key_tuple, dict_obj, default_value=None):
 
     >>> safe_nested_val(('a', 'c'), dict_obj, 5)
     5
+    >>> safe_nested_val(('d'), dict_obj, 5)
+    5
     """
     try:
         return get_nested_val(key_tuple, dict_obj)
     except (KeyError, IndexError, TypeError):
         return default_value
-    return default_value
 
 
 def in_nested_dicts(key_tuple, dict_obj):

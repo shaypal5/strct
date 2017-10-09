@@ -171,18 +171,18 @@ def find_range_ix_in_point_list(start, end, point_list):
     Example
     -------
     >>> from sortedcontainers import SortedList
-    >>> seclist = SortedList([5, 8, 15])
-    >>> find_range_ix_in_point_list(3, 4, seclist)
+    >>> point_list = SortedList([5, 8, 15])
+    >>> find_range_ix_in_point_list(3, 4, point_list)
     [0, 0]
-    >>> find_range_ix_in_section_list(3, 7, seclist)
+    >>> find_range_ix_in_point_list(3, 7, point_list)
     [0, 1]
-    >>> find_range_ix_in_section_list(3, 8, seclist)
+    >>> find_range_ix_in_point_list(3, 8, point_list)
     [0, 2]
-    >>> find_range_ix_in_section_list(4, 15, seclist)
+    >>> find_range_ix_in_point_list(4, 15, point_list)
     [0, 3]
-    >>> find_range_ix_in_section_list(4, 321, seclist)
+    >>> find_range_ix_in_point_list(4, 321, point_list)
     [0, 3]
-    >>> find_range_ix_in_section_list(6, 321, seclist)
+    >>> find_range_ix_in_point_list(6, 321, point_list)
     [1, 3]
     """
     return [point_list.bisect_left(start), point_list.bisect_right(end)]

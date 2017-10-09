@@ -4,6 +4,7 @@ omit =
     tests/*
     strct/_version.py
     strct/__init__.py
+    */__init__.py
 [report]
 show_missing = True
 # Regexes for lines to exclude from consideration
