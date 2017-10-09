@@ -21,7 +21,7 @@ TEST_REQUIRES = ['sortedcontainers', 'pytest', 'coverage', 'pytest-cov']
 
 setup(
     name='strct',
-    description=("A small pure-python package for data structure related
+    description=("A small pure-python package for data structure related"
                  "utility functions."),
     long_description=README_RST,
     author="Shay Palachy",
