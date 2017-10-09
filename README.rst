@@ -1,12 +1,12 @@
-struct
+structura
 #########
 |PyPI-Status| |PyPI-Versions| |Build-Status| |Codecov| |LICENCE|
 
-A small pure-python package for data structure related utility functions.
+A small pure-python package for data structuraure related utility functions.
 
 .. code-block:: python
 
-  from struct import lazy_property
+  from structura import lazy_property
 
   @lazy_property
   def paramless_big_calc():
@@ -21,11 +21,11 @@ A small pure-python package for data structure related utility functions.
 Installation
 ============
 
-Install ``struct`` with:
+Install ``structura`` with:
 
 .. code-block:: bash
 
-  pip install struct
+  pip install structura
 
 
 Decorators
@@ -40,7 +40,7 @@ You can think about it like a ``functools.lru_cache(maxsize=1)`` for functions w
 
 .. code-block:: python
 
-  from struct import lazy_property
+  from structura import lazy_property
 
   @lazy_property
   def paramless_big_calc():
@@ -56,7 +56,7 @@ The ``threadsafe_generator`` decorator makes generators threadsafe. This means m
 
 .. code-block:: python
 
-  from struct import threadsafe_generator
+  from structura import threadsafe_generator
 
   @threadsafe_generator
   def user_documents(day):
@@ -80,14 +80,14 @@ Clone:
 
 .. code-block:: bash
 
-  git clone git@github.com:shaypal5/struct.git
+  git clone git@github.com:shaypal5/structura.git
 
 
 Install in development mode with test dependencies:
 
 .. code-block:: bash
 
-  cd struct
+  cd structura
   pip install -e ".[test]"
 
 
@@ -98,7 +98,7 @@ To run the tests, use:
 
 .. code-block:: bash
 
-  python -m pytest --cov=struct
+  python -m pytest --cov=structura
 
 
 Adding documentation
@@ -114,17 +114,17 @@ Credits
 =======
 Created by Shay Palachy  (shay.palachy@gmail.com).
 
-.. |PyPI-Status| image:: https://img.shields.io/pypi/v/struct.svg
-  :target: https://pypi.python.org/pypi/struct
+.. |PyPI-Status| image:: https://img.shields.io/pypi/v/structura.svg
+  :target: https://pypi.python.org/pypi/structura
 
-.. |PyPI-Versions| image:: https://img.shields.io/pypi/pyversions/struct.svg
-   :target: https://pypi.python.org/pypi/struct
+.. |PyPI-Versions| image:: https://img.shields.io/pypi/pyversions/structura.svg
+   :target: https://pypi.python.org/pypi/structura
 
-.. |Build-Status| image:: https://travis-ci.org/shaypal5/struct.svg?branch=master
-  :target: https://travis-ci.org/shaypal5/struct
+.. |Build-Status| image:: https://travis-ci.org/shaypal5/structura.svg?branch=master
+  :target: https://travis-ci.org/shaypal5/structura
 
-.. |LICENCE| image:: https://img.shields.io/pypi/l/struct.svg
-  :target: https://pypi.python.org/pypi/struct
+.. |LICENCE| image:: https://img.shields.io/pypi/l/structura.svg
+  :target: https://pypi.python.org/pypi/structura
 
-.. |Codecov| image:: https://codecov.io/github/shaypal5/struct/coverage.svg?branch=master
-   :target: https://codecov.io/github/shaypal5/struct?branch=master
+.. |Codecov| image:: https://codecov.io/github/shaypal5/structura/coverage.svg?branch=master
+   :target: https://codecov.io/github/shaypal5/structura?branch=master

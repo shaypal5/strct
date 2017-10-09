@@ -1,6 +1,6 @@
 """Testing set related utility functions."""
 
-from struct.set import get_priority_elem_in_set
+from structura.set import get_priority_elem_in_set
 
 
 def test_get_priority_elem_in_set():

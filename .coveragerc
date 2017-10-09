@@ -2,8 +2,8 @@
 branch = True
 omit =
     tests/*
-    struct/_version.py
-    struct/__init__.py
+    structura/_version.py
+    structura/__init__.py
 [report]
 show_missing = True
 # Regexes for lines to exclude from consideration

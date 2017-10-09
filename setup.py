@@ -1,4 +1,4 @@
-"""Setup for the struct package."""
+"""Setup for the structura package."""
 
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
@@ -20,16 +20,16 @@ TEST_REQUIRES = ['pytest', 'coverage', 'pytest-cov']
 
 
 setup(
-    name='struct',
+    name='structura',
     description=("A small pure-python package for utility decorators."),
     long_description=README_RST,
     author="Shay Palachy",
     author_email="shaypal5@gmail.com",
     version=versioneer.get_version(),
     cmdclass=versioneer.get_cmdclass(),
-    url='https://github.com/shaypal5/struct',
+    url='https://github.com/shaypal5/structura',
     license="MIT",
-    packages=['struct'],
+    packages=['structura'],
     install_requires=INSTALL_REQUIRES,
     extras_require={
         'test': TEST_REQUIRES

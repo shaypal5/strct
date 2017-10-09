@@ -2,7 +2,7 @@
 
 from sortedcontainers import SortedList
 
-from struct.sortedlist import (
+from structura.sortedlist import (
     find_point_in_section_list,
     find_range_ix_in_section_list,
     find_range_in_section_list,
