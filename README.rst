@@ -6,12 +6,11 @@ A small pure-python package for data strcture related utility functions.
 
 .. code-block:: python
 
-  from strct import lazy_property
+  from strct.dict import get_nested_val
 
-  @lazy_property
-  def paramless_big_calc():
-    sub_res = [big_func(const) for const in array_of_constants]
-    return sum(sub_res)
+  >>> dict_obj = {'a': {'b': 7}}
+  >>> get_nested_val(('a', 'b'), dict_obj)
+  7
 
 .. contents::
 
@@ -28,44 +27,33 @@ Install ``strct`` with:
   pip install strct
 
 
-Decorators
-==========
+Use
+===
 
-lazy_property
--------------
+``strct`` is divided into four sub-modules.
 
-The ``lazy_property`` decorator is meant to decorate functions that compute some constant value or property that you only want to compute once. The first call to the decorated function will run it and save the value (in memory) before returning it; subsequent calls will get this value without trigerring the calculation.
+dict
+----
 
-You can think about it like a ``functools.lru_cache(maxsize=1)`` for functions with no parameters.
-
-.. code-block:: python
-
-  from strct import lazy_property
-
-  @lazy_property
-  def paramless_big_calc():
-    """I take a lot of time!"""
-    sub_res = [big_func(const) for const in array_of_constants]
-    return sum(sub_res)
+Getting values from nested dicts in various ways; operations on number-valued dicts; merging, normalizing, reversing and printing dicts (nicely)
 
 
-threadsafe_generator
---------------------
+list
+----
 
-The ``threadsafe_generator`` decorator makes generators threadsafe. This means multiple threads can be given references to the decorated generator and it is guarenteed that each item in the stream will be yielded (i.e. returned) to only a single thread.
+Index and element shifts that preserve order.
 
-.. code-block:: python
 
-  from strct import threadsafe_generator
+set
+---
 
-  @threadsafe_generator
-  def user_documents(day):
-    """I yield some MongoDB documents!"""
-    client = get_mongodb_client(some_params)
-    dt_obj = translate_day_to_dt(day)
-    user_document_cursor = client.some_mongodb_query(dt_obj, SOME_CONST)
-    while True:
-      yield user_document_cursor.__next__()
+Getting a set element by a priority list.
+
+
+sortedlist
+----------
+
+Operations on sortedcontainers.SortedList objects.
 
 
 Contributing
@@ -98,7 +86,7 @@ To run the tests, use:
 
 .. code-block:: bash
 
-  python -m pytest --cov=strct
+  python -m pytest --cov=strct --doctest-modules
 
 
 Adding documentation
