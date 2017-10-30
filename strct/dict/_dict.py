@@ -4,6 +4,34 @@ import copy  # for deep copies of dicts
 import numbers
 
 
+def hash_dict(dict_obj):
+    """Recursively computes a hash value for the given dict.
+
+    The dict must contain only hashable keys and values.
+
+    Arguments
+    ---------
+    dict_obj : dict
+        The dict for which to compute a hash value.
+
+    Returns
+    -------
+    int
+        The computed hash value.
+    """
+    item_hashes = []
+    for item in dict_obj.items():
+        try:
+            item_hashes.append(hash(item))
+        except TypeError:
+            try:
+                dummy_item = (item[0], hash_dict(item[1]))
+                item_hashes.append(hash(dummy_item))
+            except AttributeError:
+                raise ValueError("dict includes unhashable values.")
+    return hash(frozenset(item_hashes))
+
+
 def get_first_val(key_tuple, dict_obj):
     """Return the first value mapped by a key in the given tuple.
 
