@@ -1,6 +1,24 @@
 """list-related utility functions."""
 
 
+def hash_list(list_obj):
+    """Computes a hash value for the given list.
+
+    The list must contain only hashable keys and values.
+
+    Arguments
+    ---------
+    list_obj : list
+        The list for which to compute a hash value.
+
+    Returns
+    -------
+    int
+        The computed hash value.
+    """
+    return hash(frozenset(list_obj))
+
+
 def order_preserving_single_index_shift(arr, index, new_index):
     """Moves a list element to a new index while preserving order.
 

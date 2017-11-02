@@ -1,13 +1,16 @@
 """dict-related utility functions."""
 
 import copy  # for deep copies of dicts
+import json
 import numbers
+import hashlib
 
 
 def hash_dict(dict_obj):
     """Recursively computes a hash value for the given dict.
 
-    The dict must contain only hashable keys and values.
+    The dict must contain only hashable keys and values. This hash value is not
+    stable across different python kernels.
 
     Arguments
     ---------
