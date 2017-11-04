@@ -105,4 +105,4 @@ ENV/
 .DS_Store
 
 #stupid vim swp
-.swp
+*.swp
