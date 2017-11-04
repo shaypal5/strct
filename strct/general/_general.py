@@ -3,8 +3,8 @@
 import json
 import hashlib
 
-from strct.dict import hash_dict
-from strct.list import hash_list
+from strct.dicts import hash_dict
+from strct.lists import hash_list
 
 
 def stable_hash_builtins_strct(strct_obj):

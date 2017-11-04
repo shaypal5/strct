@@ -2,7 +2,7 @@
 
 import pytest
 
-from strct.dict import hash_dict
+from strct.dicts import hash_dict
 
 
 def test_simple_dict():
