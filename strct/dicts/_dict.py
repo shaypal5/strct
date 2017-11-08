@@ -1,9 +1,12 @@
 """dict-related utility functions."""
 
 import copy  # for deep copies of dicts
-import json
+import types
 import numbers
-import hashlib
+from collections import (
+    Mapping,
+    Iterable,
+)
 
 
 def hash_dict(dict_obj):
@@ -574,6 +577,60 @@ def reverse_list_valued_dict(dict_obj):
         for element in dict_obj[key]:
             new_dict[element] = key
     return new_dict
+
+
+def _get_key_reducer(separator):
+    def _key_reducer(key1, key2):
+        if key1 is None:
+            return key2
+        return key1 + separator + key2
+    return _key_reducer
+
+
+def flatten_dict(dict_obj, separator='.', flatten_lists=False):
+    """Flattens the given dict into a single-level dict with flattend keys.
+
+    Arguments
+    ---------
+    dict_obj : dict
+        A possibly nested dict.
+    separator : str, optional
+        The character to use as a separator between keys. Defaults to '.'.
+    flatten_lists : bool, optional
+        If True, list values are also flattened. False by default.
+
+    Returns
+    -------
+    dict
+        A shallow dict, where no value is a dict in itself, and keys are
+        concatenations of original key paths separated with the given
+        separator.
+
+    Example
+    -------
+    >>> dicti = {'a': 1, 'b': {'g': 4, 'o': 9}, 'x': [4, 'd']}
+    >>> flatten_dict(dicti)
+    {'a': 1, 'b.g': 4, 'b.o': 9, 'x.0': 4, 'x.1': 'd'}
+    """
+    reducer = _get_key_reducer(separator)
+    flat = {}
+    def _flatten_key_val(key, val, parent):
+        flat_key = reducer(parent, key)
+        try:
+            _flatten(val, flat_key)
+        except TypeError:
+            flat[flat_key] = val
+    def _flatten(d, parent=None):
+        try:
+            for key, val in d.items():
+                _flatten_key_val(key, val, parent)
+        except AttributeError:
+            if isinstance(d, (str, bytes)):
+                raise TypeError
+            for i, value in enumerate(d):
+                _flatten_key_val(str(i), value, parent)
+    _flatten(dict_obj)
+    return flat
 
 
 def pprint_int_dict(int_dict, indent=4, descending=False):

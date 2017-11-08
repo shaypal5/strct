@@ -23,6 +23,7 @@ from ._dict import (
     reverse_dict,
     reverse_dict_partial,
     reverse_list_valued_dict,
+    flatten_dict,
     pprint_int_dict,
     pprint_dist_dict,
 )
