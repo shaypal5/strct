@@ -1,12 +1,7 @@
 """dict-related utility functions."""
 
 import copy  # for deep copies of dicts
-import types
 import numbers
-from collections import (
-    Mapping,
-    Iterable,
-)
 
 
 def hash_dict(dict_obj):
@@ -609,17 +604,20 @@ def flatten_dict(dict_obj, separator='.', flatten_lists=False):
     Example
     -------
     >>> dicti = {'a': 1, 'b': {'g': 4, 'o': 9}, 'x': [4, 'd']}
-    >>> flatten_dict(dicti)
-    {'a': 1, 'b.g': 4, 'b.o': 9, 'x.0': 4, 'x.1': 'd'}
+    >>> flat = flatten_dict(dicti)
+    >>> sorted(flat.items())
+    [('a', 1), ('b.g', 4), ('b.o', 9), ('x.0', 4), ('x.1', 'd')]
     """
     reducer = _get_key_reducer(separator)
     flat = {}
+
     def _flatten_key_val(key, val, parent):
         flat_key = reducer(parent, key)
         try:
             _flatten(val, flat_key)
         except TypeError:
             flat[flat_key] = val
+
     def _flatten(d, parent=None):
         try:
             for key, val in d.items():
