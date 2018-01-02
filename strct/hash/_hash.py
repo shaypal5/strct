@@ -17,7 +17,7 @@ def _stable_hash_primitive(primitive):
             try:
                 return int(primitive.real)
             except AttributeError:
-                raise ValueError(
+                raise TypeError(
                     "Object {} of unhashable type encountered!".format(
                         primitive))
 
