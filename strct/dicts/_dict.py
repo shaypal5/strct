@@ -4,39 +4,10 @@ import copy  # for deep copies of dicts
 import numbers
 
 
-def hash_dict(dict_obj):
-    """Recursively computes a hash value for the given dict.
-
-    The dict must contain only hashable keys and values. This hash value is not
-    stable across different python kernels.
-
-    Arguments
-    ---------
-    dict_obj : dict
-        The dict for which to compute a hash value.
-
-    Returns
-    -------
-    int
-        The computed hash value.
-    """
-    item_hashes = []
-    for item in dict_obj.items():
-        try:
-            item_hashes.append(hash(item))
-        except TypeError:
-            try:
-                dummy_item = (item[0], hash_dict(item[1]))
-                item_hashes.append(hash(dummy_item))
-            except AttributeError:
-                raise ValueError("dict includes unhashable values.")
-    return hash(frozenset(item_hashes))
-
-
 def get_first_val(key_tuple, dict_obj):
     """Return the first value mapped by a key in the given tuple.
 
-    Arguments
+    Parameters
     ---------
     key_tuple : tuple
         The keys to use for extraction, in order.
@@ -71,7 +42,7 @@ def get_first_val(key_tuple, dict_obj):
 def any_in_dict(key_tuple, dict_obj):
     """Return whether any of the given keys is in the given dict.
 
-    Arguments
+    Parameters
     ---------
     key_tuple : tuple
         The keys for which to check inclusion.
@@ -97,7 +68,7 @@ def any_in_dict(key_tuple, dict_obj):
 def get_nested_val(key_tuple, dict_obj):
     """Return a value from nested dicts by the order of the given keys tuple.
 
-    Arguments
+    Parameters
     ---------
     key_tuple : tuple
         The keys to use for extraction, in order.
@@ -123,7 +94,7 @@ def get_nested_val(key_tuple, dict_obj):
 def safe_nested_val(key_tuple, dict_obj, default_value=None):
     """Return a value from nested dicts by the order of the given keys tuple.
 
-    Arguments
+    Parameters
     ---------
     key_tuple : tuple
         The keys to use for extraction, in order.
@@ -158,7 +129,7 @@ def safe_nested_val(key_tuple, dict_obj, default_value=None):
 def in_nested_dicts(key_tuple, dict_obj):
     """Indicated whether a value is nested in nested dicts by a keys tuple.
 
-    Arguments
+    Parameters
     ---------
     key_tuple : tuple
         The keys to use for examination, in order.
@@ -185,7 +156,7 @@ def in_nested_dicts(key_tuple, dict_obj):
 def get_alternative_nested_val(key_tuple, dict_obj):
     """Return a value from nested dicts by any path in the given keys tuple.
 
-    Arguments
+    Parameters
     ---------
     key_tuple : tuple
         Describe all possible paths for extraction.
@@ -220,7 +191,7 @@ def get_alternative_nested_val(key_tuple, dict_obj):
 def safe_alternative_nested_val(key_tuple, dict_obj, default_value=None):
     """Return a value from nested dicts by any path in the given keys tuple.
 
-    Arguments
+    Parameters
     ---------
     key_tuple : tuple
         Describe all possible paths for extraction.
@@ -251,7 +222,7 @@ def safe_alternative_nested_val(key_tuple, dict_obj, default_value=None):
 def any_path_in_dict(key_tuple, dict_obj):
     """Indicated whether any path in the given keys tuple is in a dict.
 
-    Arguments
+    Parameters
     ---------
     key_tuple : tuple
         Describe all possible paths for examination.
@@ -368,7 +339,7 @@ def unite_dicts(dicts):
     """Unites the given dicts into a single dict mapping each key to the
     latest value it was mapped to in the order the dicts were given.
 
-    Arguments
+    Parameters
     ---------
     dicts : list
         A list of dict objects.
@@ -393,7 +364,7 @@ def deep_merge_dict(base, priority):
     3. The invariant that all priority leaf nodes remain leafs is maintained.
 
 
-    Arguments
+    Parameters
     ---------
     base : dict
         The first, lower-priority, dict to merge.
@@ -418,7 +389,7 @@ def deep_merge_dict(base, priority):
 def norm_int_dict(int_dict):
     """Normalizes values in the given dict with int values.
 
-    Arguments
+    Parameters
     ---------
     int_dict : list
         A dict object mapping each key to an int value.
@@ -440,7 +411,7 @@ def sum_num_dicts(dicts, normalize=False):
     """Sums the given dicts into a single dict mapping each key to the sum
     of its mappings in all given dicts.
 
-    Arguments
+    Parameters
     ---------
     dicts : list
         A list of dict objects mapping each key to an numeric value.
@@ -467,7 +438,7 @@ def sum_dicts(dicts, normalize=False):
     key to the sum of its mappings in all given dicts. Keys mapping to
     non-numeric values retain the last value (by the given order).
 
-    Arguments
+    Parameters
     ---------
     dicts : list
         A list of dict objects mapping each key to an numeric value.
@@ -496,7 +467,7 @@ def sum_dicts(dicts, normalize=False):
 def reverse_dict(dict_obj):
     """Reverse a dict, so each value in it maps to a sorted list of its keys.
 
-    Arguments
+    Parameters
     ---------
     dict_obj : dict
         A key-value dict.
@@ -524,7 +495,7 @@ def reverse_dict(dict_obj):
 def reverse_dict_partial(dict_obj):
     """Reverse a dict, so each value in it maps to one of its keys.
 
-    Arguments
+    Parameters
     ---------
     dict_obj : dict
         A key-value dict.
@@ -549,7 +520,7 @@ def reverse_dict_partial(dict_obj):
 def reverse_list_valued_dict(dict_obj):
     """Reverse a list-valued dict, so each element in a list maps to its key.
 
-    Arguments
+    Parameters
     ---------
     dict_obj : dict
         A dict where each key maps to a list of unique values. Values are
@@ -585,7 +556,7 @@ def _get_key_reducer(separator):
 def flatten_dict(dict_obj, separator='.', flatten_lists=False):
     """Flattens the given dict into a single-level dict with flattend keys.
 
-    Arguments
+    Parameters
     ---------
     dict_obj : dict
         A possibly nested dict.
@@ -634,7 +605,7 @@ def flatten_dict(dict_obj, separator='.', flatten_lists=False):
 def pprint_int_dict(int_dict, indent=4, descending=False):
     """Prints the given dict with int values in a nice way.
 
-    Arguments
+    Parameters
     ---------
     int_dict : list
         A dict object mapping each key to an int value.
@@ -651,7 +622,7 @@ def pprint_int_dict(int_dict, indent=4, descending=False):
 def pprint_dist_dict(int_dict, indent=4, descending=False):
     """Prints the given dict, representing a normalized distribution, nicely.
 
-    Arguments
+    Parameters
     ---------
     int_dict : list
         A dict object mapping each key to an int value between 0 and 1, and all

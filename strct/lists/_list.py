@@ -1,28 +1,38 @@
 """list-related utility functions."""
 
 
-def hash_list(list_obj):
-    """Computes a hash value for the given list.
+def all_but(list_obj, idx):
+    """Returns the given list will all but a single item.
 
-    The list must contain only hashable keys and values.
-
-    Arguments
-    ---------
+    Parameters
+    ----------
     list_obj : list
-        The list for which to compute a hash value.
+        The list from which to take out an element.
+    idx : int
+        The index of the element to take out.
 
     Returns
     -------
-    int
-        The computed hash value.
+    list
+        The list with the element taken out.
+
+    Example
+    -------
+    >>> arr = [12, 34, 5, 54]
+    >>> all_but(arr, 2)
+    [12, 34, 54]
+    >>> all_but(arr, 0)
+    [34, 5, 54]
+    >>> all_but(arr, 3)
+    [12, 34, 5]
     """
-    return hash(frozenset(list_obj))
+    return list_obj[0:idx] + list_obj[idx+1:]
 
 
 def order_preserving_single_index_shift(arr, index, new_index):
     """Moves a list element to a new index while preserving order.
 
-    Arguments
+    Parameters
     ---------
     arr : list
         The list in which to shift an element.
@@ -59,7 +69,7 @@ def order_preserving_single_index_shift(arr, index, new_index):
 def order_preserving_single_element_shift(arr, value, new_index):
     """Moves a list element to a new index while preserving order.
 
-    Arguments
+    Parameters
     ---------
     arr : list
         The list in which to shift an element.

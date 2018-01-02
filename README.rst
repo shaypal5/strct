@@ -30,7 +30,7 @@ Install ``strct`` with:
 Use
 ===
 
-``strct`` is divided into four sub-modules.
+``strct`` is divided into five sub-modules:
 
 dict
 ----
@@ -54,6 +54,11 @@ sortedlist
 ----------
 
 Operations on sortedcontainers.SortedList objects.
+
+hash
+----
+
+Provide cross-kernel stable hash functions that work for built-in data structures and types, and for any custom data structure complying with the iterable or dict schemes.
 
 
 Contributing

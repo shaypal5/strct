@@ -8,7 +8,7 @@ def get_priority_elem_in_set(obj_set, priority_list):
     priority list, and the first one to be found will be returned. None is
     returned if no such object is found.
 
-    Arguments
+    Parameters
     ---------
     obj_set : set, list
         A set or list of objects.

@@ -1,7 +1,6 @@
 """dict-related utility functions."""
 
 from ._dict import (
-    hash_dict,
     get_nested_val,
     safe_nested_val,
     in_nested_dicts,

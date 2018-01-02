@@ -11,7 +11,7 @@ def find_point_in_section_list(point, section_list):
     32 and 100 all match no section, while 5 and 7.5 match [5-8) and so for
     them the function returns 5, and 30, 30.7 and 31 all match [30-31].
 
-    Arguments
+    Parameters
     ---------
     point : float
         The point for which to match a section.
@@ -62,7 +62,7 @@ def find_range_ix_in_section_list(start, end, section_list):
     following list of sections: [5-8), [8-30), [30-31]. As such, this function
     will return [5,8] for the range (7,9) and [5,8,30] while for (7, 30).
 
-    Arguments
+    Parameters
     ---------
     start : float
         The start of the desired range.
@@ -116,7 +116,7 @@ def find_range_in_section_list(start, end, section_list):
     following list of sections: [5-8), [8-30), [30-31]. As such, this function
     will return [5,8] for the range (7,9) and [5,8,30] while for (7, 30).
 
-    Arguments
+    Parameters
     ---------
     start : float
         The start of the desired range.
@@ -148,13 +148,13 @@ def find_range_in_section_list(start, end, section_list):
     [5, 8, 30]
     """
     ind = find_range_ix_in_section_list(start, end, section_list)
-    return section_list[ind[0] : ind[1]]
+    return section_list[ind[0]: ind[1]]
 
 
 def find_range_ix_in_point_list(start, end, point_list):
     """Returns the index range all points inside the given range.
 
-    Arguments
+    Parameters
     ---------
     start : float
         The start of the desired range.
