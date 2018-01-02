@@ -29,7 +29,7 @@ def _recursive_stable_hash(obj):
             try:
                 item_hashes.append(_recursive_stable_hash(item))
             except TypeError:
-                raise ValueError("dict includes unhashable values.")
+                raise TypeError("dict includes unhashable values.")
         return hash(frozenset(item_hashes))
     except AttributeError:
         pass  # go on to assume it's an iterable
