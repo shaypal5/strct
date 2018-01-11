@@ -1,4 +1,4 @@
-"""General data-structure related utility functions."""
+"""Data structure hashing related utility functions."""
 
 import json
 import hashlib
