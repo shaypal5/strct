@@ -1,5 +1,5 @@
 strct
-#########
+#####
 |PyPI-Status| |PyPI-Versions| |Build-Status| |Codecov| |LICENCE|
 
 A small pure-python package for data strcture related utility functions.
