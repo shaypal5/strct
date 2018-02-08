@@ -1,6 +1,6 @@
 """Setup for the strct package."""
 
-#!/usr/bin/env python
+# !/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 from setuptools import (
@@ -31,6 +31,7 @@ setup(
     url='https://github.com/shaypal5/strct',
     license="MIT",
     packages=find_packages(exclude=['dist', 'docs', 'tests']),
+    python_requires=">=3.4",
     install_requires=INSTALL_REQUIRES,
     extras_require={
         'test': TEST_REQUIRES

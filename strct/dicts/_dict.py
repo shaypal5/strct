@@ -126,6 +126,46 @@ def safe_nested_val(key_tuple, dict_obj, default_value=None):
         return default_value
 
 
+def put_nested_val(dict_obj, key_tuple, value):
+    """Put a value into nested dicts by the order of the given keys tuple.
+
+    Any missing intermediate dicts are created.
+
+    Parameters
+    ---------
+    dict_obj : dict
+        The outer-most dict to put in.
+    key_tuple : tuple
+        The keys to use for putting, in order.
+    value : object
+        The value to put.
+
+    Example:
+    --------
+    >>> dict_obj = {'a': {'h': 3}}
+    >>> put_nested_val(dict_obj, ('a', 'b'), 7)
+    >>> dict_obj['a']['b']
+    7
+    >>> put_nested_val(dict_obj, ('a', 'b'), 12)
+    >>> dict_obj['a']['b']
+    12
+    >>> put_nested_val(dict_obj, ('a', 'g', 'z'), 14)
+    >>> dict_obj['a']['g']['z']
+    14
+    >>> put_nested_val(dict_obj, ['base'], 88)
+    >>> dict_obj['base']
+    88
+    """
+    current_dict = dict_obj
+    for key in key_tuple[:-1]:
+        try:
+            current_dict = current_dict[key]
+        except KeyError:
+            current_dict[key] = {}
+            current_dict = current_dict[key]
+    current_dict[key_tuple[-1]] = value
+
+
 def in_nested_dicts(key_tuple, dict_obj):
     """Indicated whether a value is nested in nested dicts by a keys tuple.
 
@@ -264,6 +304,16 @@ def increment_dict_val(dict_obj, key, val):
 def add_to_dict_val_set(dict_obj, key, val):
     """Adds the given val to the set mapped by the given key.
     If the key is missing from the dict, the given mapping is added.
+
+    Example
+    -------
+    >>> dict_obj = {'a': set([1, 2])}
+    >>> add_to_dict_val_set(dict_obj, 'a', 2)
+    >>> print(dict_obj['a'])
+    {1, 2}
+    >>> add_to_dict_val_set(dict_obj, 'a', 3)
+    >>> print(dict_obj['a'])
+    {1, 2, 3}
     """
     try:
         dict_obj[key].add(val)
@@ -274,8 +324,17 @@ def add_to_dict_val_set(dict_obj, key, val):
 def add_many_to_dict_val_set(dict_obj, key, val_list):
     """Adds the given value list to the set mapped by the given key.
     If the key is missing from the dict, the given mapping is added.
+
+    Example
+    -------
+    >>> dict_obj = {'a': set([1, 2])}
+    >>> add_many_to_dict_val_set(dict_obj, 'a', [2, 3])
+    >>> print(dict_obj['a'])
+    {1, 2, 3}
+    >>> add_many_to_dict_val_set(dict_obj, 'b', [2, 3])
+    >>> print(dict_obj['b'])
+    {2, 3}
     """
-    print(key)
     try:
         dict_obj[key].update(val_list)
     except KeyError:
@@ -285,6 +344,16 @@ def add_many_to_dict_val_set(dict_obj, key, val_list):
 def add_many_to_dict_val_list(dict_obj, key, val_list):
     """Adds the given value list to the list mapped by the given key.
     If the key is missing from the dict, the given mapping is added.
+
+    Example
+    -------
+    >>> dict_obj = {'a': [1, 2]}
+    >>> add_many_to_dict_val_list(dict_obj, 'a', [2, 3])
+    >>> print(dict_obj['a'])
+    [1, 2, 2, 3]
+    >>> add_many_to_dict_val_list(dict_obj, 'b', [2, 3])
+    >>> print(dict_obj['b'])
+    [2, 3]
     """
     try:
         dict_obj[key].extend(val_list)
@@ -335,26 +404,33 @@ def get_key_of_min(dict_obj):
         dict_obj, key=lambda key: dict_obj[key])
 
 
-def unite_dicts(dicts):
+def unite_dicts(*args):
     """Unites the given dicts into a single dict mapping each key to the
     latest value it was mapped to in the order the dicts were given.
 
     Parameters
     ---------
-    dicts : list
-        A list of dict objects.
+    *args : positional arguments, each of type dict
+        The dicts to unite.
 
     Returns
     -------
     dict
         A dict where each key is mapped to the latest value it was mapped to
         in the order the dicts were given
+
+    Example:
+    --------
+    >>> dict_obj = {'a':2, 'b':1}
+    >>> dict_obj2 = {'a':8, 'c':5}
+    >>> print(unite_dicts(dict_obj, dict_obj2))
+    {'a': 8, 'b': 1, 'c': 5}
     """
-    return dict(i for dct in dicts for i in dct.items())
+    return dict(i for dct in args for i in dct.items())
 
 
 def deep_merge_dict(base, priority):
-    """Recursively merges the two given dicts into a single dict.abs
+    """Recursively merges the two given dicts into a single dict.
 
     Treating base as the the initial point of the resulting merged dict,
     and considering the nested dictionaries as trees, they are merged os:
@@ -365,11 +441,12 @@ def deep_merge_dict(base, priority):
 
 
     Parameters
-    ---------
+    ----------
     base : dict
         The first, lower-priority, dict to merge.
     priority : dict
         The second, higher-priority, dict to merge.
+
     Returns
     -------
     dict
