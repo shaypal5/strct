@@ -3,6 +3,7 @@
 from ._dict import (
     get_nested_val,
     safe_nested_val,
+    put_nested_val,
     in_nested_dicts,
     get_alternative_nested_val,
     safe_alternative_nested_val,
