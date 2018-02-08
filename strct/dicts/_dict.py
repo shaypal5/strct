@@ -423,8 +423,9 @@ def unite_dicts(*args):
     --------
     >>> dict_obj = {'a':2, 'b':1}
     >>> dict_obj2 = {'a':8, 'c':5}
-    >>> print(unite_dicts(dict_obj, dict_obj2))
-    {'a': 8, 'b': 1, 'c': 5}
+    >>> united = unite_dicts(dict_obj, dict_obj2)
+    >>> print(sorted(united.items()))
+    [('a', 8), ('b', 1), ('c', 5)]
     """
     return dict(i for dct in args for i in dct.items())
 
