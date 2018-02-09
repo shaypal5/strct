@@ -759,11 +759,11 @@ def key_tuple_value_nested_generator(dict_obj):
     -------
     >>> dicti = {'a': 1, 'b': {'c': 3, 'd': 4}}
     >>> print(sorted(list(key_tuple_value_nested_generator(dicti))))
-    [('a', 1), (('b', 'c'), 3), (('b', 'd'), 4)]
+    [(('a',), 1), (('b', 'c'), 3), (('b', 'd'), 4)]
     """
     for key, value in dict_obj.items():
         if isinstance(value, dict):
             for nested_key, value in key_tuple_value_nested_generator(value):
                 yield (key, *nested_key), value
         else:
-            yield key, value
+            yield tuple(key), value
