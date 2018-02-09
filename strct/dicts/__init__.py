@@ -1,6 +1,6 @@
 """dict-related utility functions."""
 
-from ._dict import (
+from ._dict import (  # noqa: F401
     get_nested_val,
     safe_nested_val,
     put_nested_val,
@@ -26,8 +26,10 @@ from ._dict import (
     flatten_dict,
     pprint_int_dict,
     pprint_dist_dict,
+    key_value_nested_generator,
+    key_tuple_value_nested_generator,
 )
 try:
-    del _dict
+    del _dict  # noqa: F821
 except NameError:
     pass

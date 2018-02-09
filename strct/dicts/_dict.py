@@ -713,3 +713,57 @@ def pprint_dist_dict(int_dict, indent=4, descending=False):
     for tup in sorted_tup:
         print('{}{}: {:.2f} %'.format(' '*indent, tup[0], tup[1]*100))
     print('}')
+
+
+def key_value_nested_generator(dict_obj):
+    """Recursively iterate over key-value pairs of nested dictionaries.
+
+    Parameters
+    ---------
+    dict_obj : dict
+        The outer-most dict to iterate on.
+
+    Returns
+    -------
+    generator
+        A generator over key-value pairs in all nested dictionaries.
+
+    Example
+    -------
+    >>> dicti = {'a': 1, 'b': {'c': 3, 'd': 4}}
+    >>> print(list(key_value_nested_generator(dicti)))
+    [('a', 1), ('c', 3), ('d', 4)]
+    """
+    for key, value in dict_obj.items():
+        if isinstance(value, dict):
+            for key, value in key_value_nested_generator(value):
+                yield key, value
+        else:
+            yield key, value
+
+
+def key_tuple_value_nested_generator(dict_obj):
+    """Recursively iterate over key-tuple-value pairs of nested dictionaries.
+
+    Parameters
+    ---------
+    dict_obj : dict
+        The outer-most dict to iterate on.
+
+    Returns
+    -------
+    generator
+        A generator over key-tuple-value pairs in all nested dictionaries.
+
+    Example
+    -------
+    >>> dicti = {'a': 1, 'b': {'c': 3, 'd': 4}}
+    >>> print(list(key_tuple_value_nested_generator(dicti)))
+    [('a', 1), (('b', 'c'), 3), (('b', 'd'), 4)]
+    """
+    for key, value in dict_obj.items():
+        if isinstance(value, dict):
+            for nested_key, value in key_tuple_value_nested_generator(value):
+                yield (key, *nested_key), value
+        else:
+            yield key, value
