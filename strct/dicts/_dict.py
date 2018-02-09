@@ -764,6 +764,6 @@ def key_tuple_value_nested_generator(dict_obj):
     for key, value in dict_obj.items():
         if isinstance(value, dict):
             for nested_key, value in key_tuple_value_nested_generator(value):
-                yield (key, *nested_key), value
+                yield tuple([key]) + nested_key, value
         else:
             yield tuple(key), value
