@@ -284,6 +284,32 @@ def any_path_in_dict(key_tuple, dict_obj):
     return safe_alternative_nested_val(key_tuple, dict_obj) is not None
 
 
+def subdict_by_keys(dict_obj, keys):
+    """Returns a sub-dict composed solely of the given keys.
+
+    Parameters
+    ----------
+    dict_obj : dict
+        The dict to create a sub-dict from.
+    keys : list of str
+        The keys to keep in the sub-dict. Keys not present in the given dict
+        will be ignored.
+
+    Returns
+    -------
+    dict
+        A sub-dict of the given dict composed solely of the given keys.
+
+    Example:
+    --------
+    >>> dict_obj = {'a': 1, 'b': 2, 'c': 3, 'd': 4}
+    >>> subdict = subdict_by_keys(dict_obj, ['b', 'd', 'e'])
+    >>> print(sorted(subdict.items()))
+    [('b', 2), ('d', 4)]
+    """
+    return {k: dict_obj[k] for k in set(keys).intersection(dict_obj.keys())}
+
+
 def increment_dict_val(dict_obj, key, val):
     """Increments the value mapped by the given key by the given val.
     If the key is missing from the dict, the given mapping is added.
@@ -452,6 +478,14 @@ def deep_merge_dict(base, priority):
     -------
     dict
         A recursive merge of the two given dicts.
+
+    Example:
+    --------
+    >>> base = {'a': 1, 'b': 2, 'c': {'d': 4}, 'e': 5}
+    >>> priority = {'a': {'g': 7}, 'c': 3, 'e': 5, 'f': 6}
+    >>> result = deep_merge_dict(base, priority)
+    >>> print(sorted(result.items()))
+    [('a', {'g': 7}), ('b', 2), ('c', 3), ('e', 5), ('f', 6)]
     """
     if not isinstance(base, dict) or not isinstance(priority, dict):
         return priority

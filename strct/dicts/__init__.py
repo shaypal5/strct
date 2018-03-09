@@ -8,6 +8,7 @@ from ._dict import (  # noqa: F401
     get_alternative_nested_val,
     safe_alternative_nested_val,
     any_path_in_dict,
+    subdict_by_keys,
     increment_dict_val,
     add_to_dict_val_set,
     add_many_to_dict_val_set,
