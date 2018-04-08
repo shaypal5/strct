@@ -808,10 +808,11 @@ def key_tuple_value_nested_generator(dict_obj):
 # === Classes ===
 
 class CaseInsensitiveDict(dict):
-    """A dict whose string keys are case insensitive.
-
-    To construct it from an existing dict use CaseInsensitiveDict.from_dict().
-    """
+    __doc__ = (
+        "A dict whose string keys are case insensitive. \n \n"
+        "To construct it from an existing dict use "
+        "CaseInsensitiveDict.from_dict().\n\n"
+        "dict documentation:\n\n") + dict.__doc__
 
     def __setitem__(self, key, value):
         try:
