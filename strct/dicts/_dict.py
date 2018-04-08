@@ -4,6 +4,8 @@ import copy  # for deep copies of dicts
 import numbers
 
 
+# === Functions ===
+
 def get_first_val(key_tuple, dict_obj):
     """Return the first value mapped by a key in the given tuple.
 
@@ -801,3 +803,40 @@ def key_tuple_value_nested_generator(dict_obj):
                 yield tuple([key]) + nested_key, value
         else:
             yield tuple([key]), value
+
+
+# === Classes ===
+
+class CaseInsensitiveDict(dict):
+    """A dict whose string keys are case insensitive.
+
+    To construct it from an existing dict use CaseInsensitiveDict.from_dict().
+    """
+
+    def __setitem__(self, key, value):
+        try:
+            super(CaseInsensitiveDict, self).__setitem__(key.lower(), value)
+        except AttributeError:
+            super(CaseInsensitiveDict, self).__setitem__(key, value)
+
+    def __getitem__(self, key):
+        try:
+            return super(CaseInsensitiveDict, self).__getitem__(key.lower())
+        except AttributeError:
+            return super(CaseInsensitiveDict, self).__getitem__(key)
+
+    def __contains__(self, key):
+        try:
+            return super(CaseInsensitiveDict, self).__contains__(key.lower())
+        except AttributeError:
+            return super(CaseInsensitiveDict, self).__contains_(key)
+
+    @staticmethod
+    def from_dict(dict_obj):
+        new = CaseInsensitiveDict()
+        for key, value in dict_obj.items():
+            if isinstance(value, dict):
+                new[key] = CaseInsensitiveDict.from_dict(value)
+            else:
+                new[key] = value
+        return new

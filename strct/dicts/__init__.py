@@ -1,6 +1,7 @@
 """dict-related utility functions."""
 
 from ._dict import (  # noqa: F401
+    # functions
     get_nested_val,
     safe_nested_val,
     put_nested_val,
@@ -29,6 +30,8 @@ from ._dict import (  # noqa: F401
     pprint_dist_dict,
     key_value_nested_generator,
     key_tuple_value_nested_generator,
+    # classes
+    CaseInsensitiveDict,
 )
 try:
     del _dict  # noqa: F821
