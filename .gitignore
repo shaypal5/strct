@@ -106,3 +106,6 @@ ENV/
 
 #stupid vim swp
 *.swp
+
+# pytest
+.pytest_cache
