@@ -55,7 +55,7 @@ Operations on sets:
 sortedlists
 -----------
 
-Operations on sortedcontainers.SortedList objects.
+Operations on ``sortedcontainers.SortedList`` objects.
 
 hash
 ----
