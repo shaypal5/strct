@@ -118,7 +118,7 @@ Created by Shay Palachy  (shay.palachy@gmail.com).
 .. |Build-Status| image:: https://travis-ci.org/shaypal5/strct.svg?branch=master
   :target: https://travis-ci.org/shaypal5/strct
 
-.. |LICENCE| image:: https://img.shields.io/pypi/l/strct.svg
+.. |LICENCE| image:: https://img.shields.io/badge/License-MIT-yellow.svg
   :target: https://pypi.python.org/pypi/strct
 
 .. |Codecov| image:: https://codecov.io/github/shaypal5/strct/coverage.svg?branch=master
