@@ -172,7 +172,7 @@ def in_nested_dicts(key_tuple, dict_obj):
     """Indicated whether a value is nested in nested dicts by a keys tuple.
 
     Parameters
-    ---------
+    ----------
     key_tuple : tuple
         The keys to use for examination, in order.
     dict_obj : dict
@@ -312,9 +312,23 @@ def subdict_by_keys(dict_obj, keys):
     return {k: dict_obj[k] for k in set(keys).intersection(dict_obj.keys())}
 
 
-def increment_dict_val(dict_obj, key, val):
+def increment_dict_val(dict_obj, key, value, zero_value=0):
     """Increments the value mapped by the given key by the given val.
     If the key is missing from the dict, the given mapping is added.
+
+    Parameters
+    ----------
+    dict_obj : dict
+        The dict to increment a value in.
+    key : object
+        The key whose value is to be incremented.
+    value : object
+        The value to increment the existing mapping by.
+    zero_value : object, optional
+        The value added to the given value if no existing mapping is found.
+        Set to 0 by default. Thus, this should be set to the corresponding
+        identity element (with respect to addition) for non-numeric-valued
+        dictionaries.
 
     Example:
     --------
@@ -326,7 +340,47 @@ def increment_dict_val(dict_obj, key, val):
     >>> print(dict_obj['d'])
     4
     """
-    dict_obj[key] = dict_obj.get(key, 0) + val
+    dict_obj[key] = dict_obj.get(key, zero_value) + value
+
+
+def increment_nested_val(dict_obj, key_tuple, value, zero_value=0):
+    """Increments the value mapped by the given key by the given val.
+    If the key is missing from the dict, the given mapping is added.
+
+    Parameters
+    ----------
+    dict_obj : dict
+        The outer-most dict to increment a value in.
+    key_tuple : tuple
+        The keys mapping to the nested value to increment, in order.
+    value : object
+        The value to increment the existing mapping by.
+    zero_value : object, optional
+        The value added to the given value if no existing mapping is found.
+        Set to 0 by default. Thus, this should be set to the corresponding
+        identity element (with respect to addition) for non-numeric-valued
+        dictionaries.
+
+    Example:
+    --------
+    >>> dict_obj = {'a':2, 'b': {'g': 5}}
+    >>> increment_nested_val(dict_obj, ('b', 'g'), 4)
+    >>> print(dict_obj['b']['g'])
+    9
+    >>> increment_nested_val(dict_obj, ('b', 'z'), 17)
+    >>> print(dict_obj['b']['z'])
+    17
+    """
+    inc_val = value + safe_nested_val(
+        key_tuple=key_tuple,
+        dict_obj=dict_obj,
+        default_value=zero_value,
+    )
+    put_nested_val(
+        dict_obj=dict_obj,
+        key_tuple=key_tuple,
+        value=inc_val,
+    )
 
 
 def add_to_dict_val_set(dict_obj, key, val):
