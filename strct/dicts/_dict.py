@@ -603,9 +603,11 @@ def sum_num_dicts(dicts, normalize=False):
     -------
     >>> dict1 = {'a': 3, 'b': 2}
     >>> dict2 = {'a':7, 'c': 8}
-    >>> sum_num_dicts([dict1, dict2])
+    >>> result = sum_num_dicts([dict1, dict2])
+    >>> print(sorted(result.items()))
     [('a', 10), ('b', 2), ('c', 8)]
-    >>> sum_num_dicts([dict1, dict2], normalize=True)
+    >>> result = sum_num_dicts([dict1, dict2], normalize=True)
+    >>> print(sorted(result.items()))
     [('a', 0.5), ('b', 0.1), ('c', 0.4)]
     """
     sum_dict = {}
