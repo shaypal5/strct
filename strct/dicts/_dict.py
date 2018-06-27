@@ -558,7 +558,7 @@ def norm_int_dict(int_dict):
     """Normalizes values in the given dict with int values.
 
     Parameters
-    ---------
+    ----------
     int_dict : list
         A dict object mapping each key to an int value.
 
@@ -567,6 +567,12 @@ def norm_int_dict(int_dict):
     dict
         A dict where each key is mapped to its relative part in the sum of
         all dict values.
+
+    Example
+    -------
+    >>> dict_obj = {'a': 3, 'b': 5, 'c': 2}
+    >>> norm_int_dict(dict_obj)
+    {'a': 0.3, 'b': 0.5, 'c': 0.2}
     """
     norm_dict = int_dict.copy()
     val_sum = sum(norm_dict.values())
@@ -580,7 +586,7 @@ def sum_num_dicts(dicts, normalize=False):
     of its mappings in all given dicts.
 
     Parameters
-    ---------
+    ----------
     dicts : list
         A list of dict objects mapping each key to an numeric value.
     normalize : bool, default False
@@ -607,7 +613,7 @@ def sum_dicts(dicts, normalize=False):
     non-numeric values retain the last value (by the given order).
 
     Parameters
-    ---------
+    ----------
     dicts : list
         A list of dict objects mapping each key to an numeric value.
     normalize : bool, default False
@@ -636,7 +642,7 @@ def reverse_dict(dict_obj):
     """Reverse a dict, so each value in it maps to a sorted list of its keys.
 
     Parameters
-    ---------
+    ----------
     dict_obj : dict
         A key-value dict.
 
@@ -664,7 +670,7 @@ def reverse_dict_partial(dict_obj):
     """Reverse a dict, so each value in it maps to one of its keys.
 
     Parameters
-    ---------
+    ----------
     dict_obj : dict
         A key-value dict.
 
@@ -689,7 +695,7 @@ def reverse_list_valued_dict(dict_obj):
     """Reverse a list-valued dict, so each element in a list maps to its key.
 
     Parameters
-    ---------
+    ----------
     dict_obj : dict
         A dict where each key maps to a list of unique values. Values are
         assumed to be unique across the entire dict, on not just per-list.
@@ -725,7 +731,7 @@ def flatten_dict(dict_obj, separator='.', flatten_lists=False):
     """Flattens the given dict into a single-level dict with flattend keys.
 
     Parameters
-    ---------
+    ----------
     dict_obj : dict
         A possibly nested dict.
     separator : str, optional
@@ -774,7 +780,7 @@ def pprint_int_dict(int_dict, indent=4, descending=False):
     """Prints the given dict with int values in a nice way.
 
     Parameters
-    ---------
+    ----------
     int_dict : list
         A dict object mapping each key to an int value.
     """
@@ -791,7 +797,7 @@ def pprint_dist_dict(int_dict, indent=4, descending=False):
     """Prints the given dict, representing a normalized distribution, nicely.
 
     Parameters
-    ---------
+    ----------
     int_dict : list
         A dict object mapping each key to an int value between 0 and 1, and all
         values sum to 1.
@@ -809,7 +815,7 @@ def key_value_nested_generator(dict_obj):
     """Recursively iterate over key-value pairs of nested dictionaries.
 
     Parameters
-    ---------
+    ----------
     dict_obj : dict
         The outer-most dict to iterate on.
 
@@ -836,7 +842,7 @@ def key_tuple_value_nested_generator(dict_obj):
     """Recursively iterate over key-tuple-value pairs of nested dictionaries.
 
     Parameters
-    ---------
+    ----------
     dict_obj : dict
         The outer-most dict to iterate on.
 
