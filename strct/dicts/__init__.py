@@ -18,6 +18,8 @@ from ._dict import (  # noqa: F401
     get_key_of_max,
     get_keys_of_max_n,
     get_key_of_min,
+    get_key_val_of_max,
+    get_key_val_of_max_key,
     unite_dicts,
     deep_merge_dict,
     norm_int_dict,

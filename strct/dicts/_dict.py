@@ -456,6 +456,30 @@ def get_key_of_max(dict_obj):
         dict_obj, key=lambda key: dict_obj[key])
 
 
+def get_key_val_of_max(dict_obj):
+    """Returns the key-value pair with maximal value in the given dict.
+
+    Example:
+    --------
+    >>> dict_obj = {'a':2, 'b':1}
+    >>> print(get_key_val_of_max(dict_obj))
+    ('a', 2)
+    """
+    return max(dict_obj.items(), key=lambda item: item[1])
+
+
+def get_key_val_of_max_key(dict_obj):
+    """Returns the key-value pair with the largest key in the given dict.
+
+    Example:
+    --------
+    >>> dict_obj = {5: 'g', 3: 'z'}
+    >>> print(get_key_val_of_max_key(dict_obj))
+    (5, 'g')
+    """
+    return max(dict_obj.items(), key=lambda item: item[0])
+
+
 def get_keys_of_max_n(dict_obj, n):
     """Returns the keys that maps to the top n max values in the given dict.
 
