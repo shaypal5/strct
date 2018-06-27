@@ -10,7 +10,7 @@ def get_first_val(key_tuple, dict_obj):
     """Return the first value mapped by a key in the given tuple.
 
     Parameters
-    ---------
+    ----------
     key_tuple : tuple
         The keys to use for extraction, in order.
     dict_obj : dict
@@ -21,8 +21,8 @@ def get_first_val(key_tuple, dict_obj):
     value : object
         The extracted value, if exists. Otherwise, raises KeyError.
 
-    Example:
-    --------
+    Example
+    -------
     >>> dict_obj = {'a': 1, 'c': 2}
     >>> get_first_val(('a', 'b', 'c'), dict_obj)
     1
@@ -45,7 +45,7 @@ def any_in_dict(key_tuple, dict_obj):
     """Return whether any of the given keys is in the given dict.
 
     Parameters
-    ---------
+    ----------
     key_tuple : tuple
         The keys for which to check inclusion.
     dict_obj : dict
@@ -56,8 +56,8 @@ def any_in_dict(key_tuple, dict_obj):
     bool
         True if any of the given keys is in the given dict. False otherwise.
 
-    Example:
-    --------
+    Example
+    -------
     >>> dict_obj = {'a': 1, 'c': 2}
     >>> any_in_dict(('a', 'b'), dict_obj)
     True
@@ -71,7 +71,7 @@ def get_nested_val(key_tuple, dict_obj):
     """Return a value from nested dicts by the order of the given keys tuple.
 
     Parameters
-    ---------
+    ----------
     key_tuple : tuple
         The keys to use for extraction, in order.
     dict_obj : dict
@@ -82,8 +82,8 @@ def get_nested_val(key_tuple, dict_obj):
     value : object
         The extracted value, if exists. Otherwise, raises KeyError.
 
-    Example:
-    --------
+    Example
+    -------
     >>> dict_obj = {'a': {'b': 7}}
     >>> get_nested_val(('a', 'b'), dict_obj)
     7
@@ -97,7 +97,7 @@ def safe_nested_val(key_tuple, dict_obj, default_value=None):
     """Return a value from nested dicts by the order of the given keys tuple.
 
     Parameters
-    ---------
+    ----------
     key_tuple : tuple
         The keys to use for extraction, in order.
     dict_obj : dict
@@ -110,8 +110,8 @@ def safe_nested_val(key_tuple, dict_obj, default_value=None):
     value : object
         The extracted value, if exists. Otherwise, the given default_value.
 
-    Example:
-    --------
+    Example
+    -------
     >>> dict_obj = {'a': {'b': 7}}
     >>> safe_nested_val(('a', 'b'), dict_obj)
     7
@@ -134,7 +134,7 @@ def put_nested_val(dict_obj, key_tuple, value):
     Any missing intermediate dicts are created.
 
     Parameters
-    ---------
+    ----------
     dict_obj : dict
         The outer-most dict to put in.
     key_tuple : tuple
@@ -142,8 +142,8 @@ def put_nested_val(dict_obj, key_tuple, value):
     value : object
         The value to put.
 
-    Example:
-    --------
+    Example
+    -------
     >>> dict_obj = {'a': {'h': 3}}
     >>> put_nested_val(dict_obj, ('a', 'b'), 7)
     >>> dict_obj['a']['b']
@@ -172,7 +172,7 @@ def in_nested_dicts(key_tuple, dict_obj):
     """Indicated whether a value is nested in nested dicts by a keys tuple.
 
     Parameters
-    ----------
+    -----------
     key_tuple : tuple
         The keys to use for examination, in order.
     dict_obj : dict
@@ -184,8 +184,8 @@ def in_nested_dicts(key_tuple, dict_obj):
         If some value if nested in the given dict by the given keys tupe, in
         order. False otherwise.
 
-    Example:
-    --------
+    Example
+    -------
     >>> dict_obj = {'a': {'b': 7}}
     >>> in_nested_dicts(('a', 'b'), dict_obj)
     True
@@ -234,7 +234,7 @@ def safe_alternative_nested_val(key_tuple, dict_obj, default_value=None):
     """Return a value from nested dicts by any path in the given keys tuple.
 
     Parameters
-    ---------
+    ----------
     key_tuple : tuple
         Describe all possible paths for extraction.
     dict_obj : dict
@@ -247,8 +247,8 @@ def safe_alternative_nested_val(key_tuple, dict_obj, default_value=None):
     value : object
         The extracted value, if exists. Otherwise, the given default_value.
 
-    Example:
-    --------
+    Example
+    -------
     >>> dict_obj = {'a': {'b': 7}}
     >>> safe_alternative_nested_val(('a', ('b', 'c')), dict_obj)
     7
@@ -265,7 +265,7 @@ def any_path_in_dict(key_tuple, dict_obj):
     """Indicated whether any path in the given keys tuple is in a dict.
 
     Parameters
-    ---------
+    ----------
     key_tuple : tuple
         Describe all possible paths for examination.
     dict_obj : dict
@@ -277,8 +277,8 @@ def any_path_in_dict(key_tuple, dict_obj):
         True if any path in the given keys tuple is in the given dict. False
         otherwise.
 
-    Example:
-    --------
+    Example
+    -------
     >>> dict_obj = {'a': {'b': 7}}
     >>> any_path_in_dict(('a', ('b', 'c')), dict_obj)
     True
@@ -330,7 +330,7 @@ def increment_dict_val(dict_obj, key, value, zero_value=0):
         identity element (with respect to addition) for non-numeric-valued
         dictionaries.
 
-    Example:
+    Examples
     --------
     >>> dict_obj = {'a':2, 'b':1}
     >>> increment_dict_val(dict_obj, 'a', 4)
@@ -361,7 +361,7 @@ def increment_nested_val(dict_obj, key_tuple, value, zero_value=0):
         identity element (with respect to addition) for non-numeric-valued
         dictionaries.
 
-    Example:
+    Examples
     --------
     >>> dict_obj = {'a':2, 'b': {'g': 5}}
     >>> increment_nested_val(dict_obj, ('b', 'g'), 4)
@@ -597,6 +597,15 @@ def sum_num_dicts(dicts, normalize=False):
     dict
         A dict where each key is mapped to the sum of its mappings in all
         given dicts.
+
+    Example
+    -------
+    >>> dict1 = {'a': 3, 'b': 2}
+    >>> dict2 = {'a':7, 'c': 8}
+    >>> sum_num_dicts([dict1, dict2])
+    {'a': 10, 'b': 2, 'c': 8}
+    >>> sum_num_dicts([dict1, dict2], normalize=True)
+    {'a': 0.5, 'b': 0.1, 'c': 0.4}
     """
     sum_dict = {}
     for dicti in dicts:
