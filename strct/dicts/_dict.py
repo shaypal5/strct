@@ -571,8 +571,9 @@ def norm_int_dict(int_dict):
     Example
     -------
     >>> dict_obj = {'a': 3, 'b': 5, 'c': 2}
-    >>> norm_int_dict(dict_obj)
-    {'a': 0.3, 'b': 0.5, 'c': 0.2}
+    >>> result = norm_int_dict(dict_obj)
+    >>> print(sorted(result.items()))
+    [('a', 0.3), ('b', 0.5), ('c', 0.2)]
     """
     norm_dict = int_dict.copy()
     val_sum = sum(norm_dict.values())
@@ -603,9 +604,9 @@ def sum_num_dicts(dicts, normalize=False):
     >>> dict1 = {'a': 3, 'b': 2}
     >>> dict2 = {'a':7, 'c': 8}
     >>> sum_num_dicts([dict1, dict2])
-    {'a': 10, 'b': 2, 'c': 8}
+    [('a', 10), ('b', 2), ('c', 8)]
     >>> sum_num_dicts([dict1, dict2], normalize=True)
-    {'a': 0.5, 'b': 0.1, 'c': 0.4}
+    [('a', 0.5), ('b', 0.1), ('c', 0.4)]
     """
     sum_dict = {}
     for dicti in dicts:
