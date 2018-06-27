@@ -32,26 +32,28 @@ Use
 
 ``strct`` is divided into five sub-modules:
 
-dict
-----
+dicts
+-----
 
 Getting values from nested dicts in various ways; operations on number-valued dicts; merging, normalizing, reversing and printing dicts (nicely)
 
 
-list
-----
+lists
+-----
 
 Index and element shifts that preserve order.
 
 
-set
----
+sets
+----
 
-Getting a set element by a priority list.
+Operations on sets:
+
+- Getting a set element by a priority list.
 
 
-sortedlist
-----------
+sortedlists
+-----------
 
 Operations on sortedcontainers.SortedList objects.
 
