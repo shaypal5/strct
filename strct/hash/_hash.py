@@ -2,6 +2,7 @@
 
 import json
 import hashlib
+from collections.abc import Sequence
 
 
 def _stable_hash_primitive(primitive):
@@ -73,14 +74,13 @@ def stable_hash(obj):
     2
     >>> stable_hash(complex(4, 5))
     4
-    >>> stable_hash([3, 23.2, '23'])
-    -8814990287216496045
-    >>> stable_hash([34, {'a': 23, 'g': [1, '43']}])
-    4894511948741237771
-    >>> stable_hash({'a': 23, 'b': [234, 'g'], 'c': {4: 'go'}})
-    -4531592806763782902
     """
     return _recursive_stable_hash(obj)
+
+
+def _seq_but_not_str(obj):
+    return (isinstance(obj, Sequence)) and (
+        not isinstance(obj, (str, bytes, bytearray)))
 
 
 def json_based_stable_hash(obj):
