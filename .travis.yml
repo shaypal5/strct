@@ -13,6 +13,7 @@ matrix:
 #     on_success: change
 #     on_failure: always
 before_install:
+  - pip install --upgrade pytest
   - pip install codecov
 install:
   - pip install ".[test]"
