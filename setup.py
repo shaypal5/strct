@@ -12,11 +12,18 @@ import versioneer
 
 
 README_RST = ''
-with open('README.rst') as f:
+with open('README.rst', encoding="utf-8") as f:
     README_RST = f.read()
 
 INSTALL_REQUIRES = []
-TEST_REQUIRES = ['sortedcontainers', 'pytest', 'coverage', 'pytest-cov']
+TEST_REQUIRES = [
+    # testing and coverage
+    'pytest', 'coverage', 'pytest-cov',
+    # non-testing packagesrequired by tests, not by the package
+    'sortedcontainers',
+    # to be able to run `python setup.py checkdocs`
+    'collective.checkdocs', 'pygments',
+]
 
 
 setup(
@@ -31,7 +38,7 @@ setup(
     url='https://github.com/shaypal5/strct',
     license="MIT",
     packages=find_packages(exclude=['dist', 'docs', 'tests']),
-    python_requires=">=3.4",
+    python_requires=">=3.5",
     install_requires=INSTALL_REQUIRES,
     extras_require={
         'test': TEST_REQUIRES
@@ -45,10 +52,10 @@ setup(
         'Development Status :: 4 - Beta',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
         'Topic :: Software Development :: Libraries',
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Intended Audience :: Developers',
