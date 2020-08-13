@@ -14,6 +14,7 @@ from ._dict import (  # noqa: F401
     increment_nested_val,
     add_to_dict_val_set,
     add_many_to_dict_val_set,
+    append_to_dict_val_list,
     add_many_to_dict_val_list,
     get_key_of_max,
     get_keys_of_max_n,
