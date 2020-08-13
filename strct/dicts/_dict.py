@@ -423,6 +423,26 @@ def add_many_to_dict_val_set(dict_obj, key, val_list):
         dict_obj[key] = set(val_list)
 
 
+def append_to_dict_val_list(dict_obj, key, val):
+    """Adds the given value to the list mapped by the given key.
+    If the key is missing from the dict, the given mapping is added.
+
+    Example
+    -------
+    >>> dict_obj = {'a': [1, 2]}
+    >>> append_to_dict_val_list(dict_obj, 'a', 3)
+    >>> print(dict_obj['a'])
+    [1, 2, 3]
+    >>> append_to_dict_val_list(dict_obj, 'b', 5)
+    >>> print(dict_obj['b'])
+    [5]
+    """
+    try:
+        dict_obj[key].append(val)
+    except KeyError:
+        dict_obj[key] = [val]
+
+
 def add_many_to_dict_val_list(dict_obj, key, val_list):
     """Adds the given value list to the list mapped by the given key.
     If the key is missing from the dict, the given mapping is added.
