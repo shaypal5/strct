@@ -68,6 +68,8 @@ matrix:
         - python -m pip install --upgrade pip
         - pip3 install --upgrade pytest
         - pip3 install codecov
+      script: python -m pytest
+      after_success: python -m codecov
       env: PATH=/c/Python38:/c/Python38/Scripts:$PATH
 before_install:
   - pip3 install -U pip
