@@ -1,3 +1,4 @@
 include versioneer.py
 include strct/_version.py
 recursive-include strct *.py
+include LICENSE
