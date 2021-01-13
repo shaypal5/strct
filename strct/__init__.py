@@ -1,9 +1,9 @@
 """Utility pure-Python 3 decorators."""
 
-import strct.dicts
-import strct.lists
-import strct.sets
-import strct.sortedlists
+import strct.dict
+import strct.list
+import strct.set
+import strct.sortedlist
 import strct.hash
 
 from ._version import get_versions
@@ -12,5 +12,5 @@ del get_versions
 
 try:
     del strct
-except NameError: # pragma: no cover
+except NameError:  # pragma: no cover
     pass

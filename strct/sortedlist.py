@@ -60,7 +60,7 @@ def find_range_ix_in_section_list(start, end, section_list):
     sections, except for the final point, assumed to be the end point of the
     last section. For example, the list [5, 8, 30, 31] is interpreted as the
     following list of sections: [5-8), [8-30), [30-31]. As such, this function
-    will return [5,8] for the range (7,9) and [5,8,30] while for (7, 30).
+    will return [5,8] for the range (7,9) and [5,8,30] for (7, 30).
 
     Parameters
     ---------
@@ -114,7 +114,7 @@ def find_range_in_section_list(start, end, section_list):
     sections, except for the final point, assumed to be the end point of the
     last section. For example, the list [5, 8, 30, 31] is interpreted as the
     following list of sections: [5-8), [8-30), [30-31]. As such, this function
-    will return [5,8] for the range (7,9) and [5,8,30] while for (7, 30).
+    will return [5,8] for the range (7,9) and [5,8,30] for (7, 30).
 
     Parameters
     ---------

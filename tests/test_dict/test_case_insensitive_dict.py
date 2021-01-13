@@ -1,6 +1,6 @@
 """Test the CaseInsensitiveDict class."""
 
-from strct.dicts import CaseInsensitiveDict
+from strct.dict import CaseInsensitiveDict
 
 
 REG_EXAMPLE = {'a': 4, 'C': {'g': 8, 2: 1}}

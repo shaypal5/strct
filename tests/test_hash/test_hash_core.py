@@ -1,10 +1,13 @@
 """Test hash functions."""
 
 import sys
+import pickle
 
 from scipy import sparse
 
 from strct.hash import stable_hash
+
+from .gen_hasg_xgb import get_xgb_kwargs
 
 
 def test_stable_hash():
@@ -39,11 +42,7 @@ def test_stable_hash():
     assert stable_hash(dicti) == expected_val3
 
 
-XGB_KWARGS = {
-    X
-}
-
-def test_xgb_kwargs_like_hash():
+def test_xgb_kwargs_hashing():
     if sys.version_info.major == 3:
         if sys.version_info.minor >= 6:
             expected_val = 5461671350068481966
@@ -51,5 +50,7 @@ def test_xgb_kwargs_like_hash():
             expected_val = -8814990287216496045
     else:
         raise Exception("This test is meant for Python 3!")
-    listi = [3, 23.2, '23']
-    assert stable_hash(listi) == expected_val
+    xgb_kwargs = get_xgb_kwargs()
+    hashval = stable_hash(xgb_kwargs)
+    assert hashval == expected_val
+

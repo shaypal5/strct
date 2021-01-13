@@ -1,6 +1,6 @@
 """Testing some dict-related strct functions."""
 
-from strct.dicts import (
+from strct.dict import (
     increment_dict_val,
     increment_nested_val,
 )
