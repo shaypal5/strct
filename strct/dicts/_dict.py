@@ -588,7 +588,7 @@ def deep_merge_dict(base, priority):
     1. Every path to every leaf in priority would be represented in the result.
     2. Subtrees of base are overwritten if a leaf is found in the
     corresponding path in priority.
-    3. The invariant that all priority leaf nodes remain leafs is maintained.
+    3. The invariant that all priority leaf nodes remain leaves is maintained.
 
 
     Parameters
@@ -691,7 +691,7 @@ def sum_num_dicts(dicts, normalize=False):
 
 
 def sum_dicts(dicts, normalize=False):
-    """Sums the given dicts into a single dict mapping each numberic-valued key
+    """Sums the given dicts into a single dict mapping each numeric-valued key
     to the sum of its mappings in all given dicts. Keys mapping to non-numeric
     values retain the last value (by the given order).
 
@@ -816,7 +816,7 @@ def _get_key_reducer(separator):
 
 
 def flatten_dict(dict_obj, separator=".", flatten_lists=False):
-    """Flattens the given dict into a single-level dict with flattend keys.
+    """Flattens the given dict into a single-level dict with flattened keys.
 
     Parameters
     ----------
