@@ -13,7 +13,7 @@ def test_stable_hash():
             expected_val = -8814990287216496045
     else:
         raise Exception("This test is meant for Python 3!")
-    listi = [3, 23.2, '23']
+    listi = [3, 23.2, "23"]
     assert stable_hash(listi) == expected_val
 
     if sys.version_info.major == 3:
@@ -23,7 +23,7 @@ def test_stable_hash():
             expected_val2 = 4894511948741237771
     else:
         raise Exception("This test is meant for Python 3!")
-    listi2 = [34, {'a': 23, 'g': [1, '43']}]
+    listi2 = [34, {"a": 23, "g": [1, "43"]}]
     assert stable_hash(listi2) == expected_val2
 
     if sys.version_info.major == 3:
@@ -33,5 +33,5 @@ def test_stable_hash():
             expected_val3 = -4531592806763782902
     else:
         raise Exception("This test is meant for Python 3!")
-    dicti = {'a': 23, 'b': [234, 'g'], 'c': {4: 'go'}}
+    dicti = {"a": 23, "b": [234, "g"], "c": {4: "go"}}
     assert stable_hash(dicti) == expected_val3

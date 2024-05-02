@@ -41,37 +41,39 @@ def _load_requirements(
 
 
 setup(
-    name='strct',
-    description=("A small pure-python package for data structure related"
-                 "utility functions."),
+    name="strct",
+    description=(
+        "A small pure-python package for data structure related"
+        "utility functions."
+    ),
     long_description=README_RST,
     author="Shay Palachy Affek",
     author_email="shaypal5@gmail.com",
     version=_version.__version__,
-    url='https://github.com/shaypal5/strct',
+    url="https://github.com/shaypal5/strct",
     license="MIT",
-    packages=find_packages(exclude=['dist', 'docs', 'tests']),
+    packages=find_packages(exclude=["dist", "docs", "tests"]),
     include_package_data=True,
     python_requires=">=3.8",
     install_requires=_load_requirements(),
-    platforms=['any'],
-    keywords=['python', 'list', 'dict', 'set', 'sortedlist'],
+    platforms=["any"],
+    keywords=["python", "list", "dict", "set", "sortedlist"],
     classifiers=[
         # Trove classifiers
         # (https://pypi.python.org/pypi?%3Aaction=list_classifiers)
-        'Development Status :: 4 - Beta',
-        'License :: OSI Approved :: MIT License',
-        'Programming Language :: Python',
+        "Development Status :: 4 - Beta",
+        "License :: OSI Approved :: MIT License",
+        "Programming Language :: Python",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
-        'Topic :: Software Development :: Libraries',
-        'Topic :: Software Development :: Libraries :: Python Modules',
+        "Topic :: Software Development :: Libraries",
+        "Topic :: Software Development :: Libraries :: Python Modules",
         "Topic :: Utilities",
         "Topic :: Other/Nonlisted Topic",
-        'Intended Audience :: Developers',
+        "Intended Audience :: Developers",
     ],
 )

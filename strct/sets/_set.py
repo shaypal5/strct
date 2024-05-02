@@ -1,4 +1,4 @@
-"""dict-related utility functions."""
+"""Dict-related utility functions."""
 
 
 def get_priority_elem_in_set(obj_set, priority_list):
@@ -26,6 +26,7 @@ def get_priority_elem_in_set(obj_set, priority_list):
     >>> priority_list = [4, 8, 1, 3]
     >>> print(get_priority_elem_in_set(obj_set, priority_list))
     8
+
     """
     for obj in priority_list:
         if obj in obj_set:

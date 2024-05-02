@@ -1,10 +1,10 @@
-"""dict-related utility functions."""
+"""Dict-related utility functions."""
 
 import copy  # for deep copies of dicts
 import numbers
 
-
 # === Functions ===
+
 
 def get_first_val(key_tuple, dict_obj):
     """Return the first value mapped by a key in the given tuple.
@@ -32,13 +32,14 @@ def get_first_val(key_tuple, dict_obj):
     Traceback (most recent call last):
      ...
     KeyError: 'None of the provided keys was found'
+
     """
     for key in key_tuple:
         try:
             return dict_obj[key]
         except KeyError:
             pass
-    raise KeyError('None of the provided keys was found')
+    raise KeyError("None of the provided keys was found")
 
 
 def any_in_dict(key_tuple, dict_obj):
@@ -63,6 +64,7 @@ def any_in_dict(key_tuple, dict_obj):
     True
     >>> any_in_dict(('b', 'g'), dict_obj)
     False
+
     """
     return any([key in dict_obj for key in key_tuple])
 
@@ -87,6 +89,7 @@ def get_nested_val(key_tuple, dict_obj):
     >>> dict_obj = {'a': {'b': 7}}
     >>> get_nested_val(('a', 'b'), dict_obj)
     7
+
     """
     if len(key_tuple) == 1:
         return dict_obj[key_tuple[0]]
@@ -121,6 +124,7 @@ def safe_nested_val(key_tuple, dict_obj, default_value=None):
     5
     >>> safe_nested_val(('d'), dict_obj, 5)
     5
+
     """
     try:
         return get_nested_val(key_tuple, dict_obj)
@@ -157,6 +161,7 @@ def put_nested_val(dict_obj, key_tuple, value):
     >>> put_nested_val(dict_obj, ['base'], 88)
     >>> dict_obj['base']
     88
+
     """
     current_dict = dict_obj
     for key in key_tuple[:-1]:
@@ -191,6 +196,7 @@ def in_nested_dicts(key_tuple, dict_obj):
     True
     >>> in_nested_dicts(('a', 'c'), dict_obj)
     False
+
     """
     return safe_nested_val(key_tuple, dict_obj) is not None
 
@@ -215,11 +221,15 @@ def get_alternative_nested_val(key_tuple, dict_obj):
     >>> dict_obj = {'a': {'b': 7}}
     >>> get_alternative_nested_val(('a', ('b', 'c')), dict_obj)
     7
+
     """
     # print('key_tuple: {}'.format(key_tuple))
     # print('dict_obj: {}'.format(dict_obj))
-    top_keys = key_tuple[0] if isinstance(key_tuple[0], (list, tuple)) else [
-        key_tuple[0]]
+    top_keys = (
+        key_tuple[0]
+        if isinstance(key_tuple[0], (list, tuple))
+        else [key_tuple[0]]
+    )
     for key in top_keys:
         try:
             if len(key_tuple) < 2:
@@ -282,6 +292,7 @@ def any_path_in_dict(key_tuple, dict_obj):
     >>> dict_obj = {'a': {'b': 7}}
     >>> any_path_in_dict(('a', ('b', 'c')), dict_obj)
     True
+
     """
     return safe_alternative_nested_val(key_tuple, dict_obj) is not None
 
@@ -308,13 +319,14 @@ def subdict_by_keys(dict_obj, keys):
     >>> subdict = subdict_by_keys(dict_obj, ['b', 'd', 'e'])
     >>> print(sorted(subdict.items()))
     [('b', 2), ('d', 4)]
+
     """
     return {k: dict_obj[k] for k in set(keys).intersection(dict_obj.keys())}
 
 
 def increment_dict_val(dict_obj, key, value, zero_value=0):
-    """Increments the value mapped by the given key by the given val.
-    If the key is missing from the dict, the given mapping is added.
+    """Increments the value mapped by the given key by the given val. If the
+    key is missing from the dict, the given mapping is added.
 
     Parameters
     ----------
@@ -339,13 +351,14 @@ def increment_dict_val(dict_obj, key, value, zero_value=0):
     >>> increment_dict_val(dict_obj, 'd', 4)
     >>> print(dict_obj['d'])
     4
+
     """
     dict_obj[key] = dict_obj.get(key, zero_value) + value
 
 
 def increment_nested_val(dict_obj, key_tuple, value, zero_value=0):
-    """Increments the value mapped by the given key by the given val.
-    If the key is missing from the dict, the given mapping is added.
+    """Increments the value mapped by the given key by the given val. If the
+    key is missing from the dict, the given mapping is added.
 
     Parameters
     ----------
@@ -370,6 +383,7 @@ def increment_nested_val(dict_obj, key_tuple, value, zero_value=0):
     >>> increment_nested_val(dict_obj, ('b', 'z'), 17)
     >>> print(dict_obj['b']['z'])
     17
+
     """
     inc_val = value + safe_nested_val(
         key_tuple=key_tuple,
@@ -384,8 +398,8 @@ def increment_nested_val(dict_obj, key_tuple, value, zero_value=0):
 
 
 def add_to_dict_val_set(dict_obj, key, val):
-    """Adds the given val to the set mapped by the given key.
-    If the key is missing from the dict, the given mapping is added.
+    """Adds the given val to the set mapped by the given key. If the key is
+    missing from the dict, the given mapping is added.
 
     Example
     -------
@@ -396,6 +410,7 @@ def add_to_dict_val_set(dict_obj, key, val):
     >>> add_to_dict_val_set(dict_obj, 'a', 3)
     >>> print(dict_obj['a'])
     {1, 2, 3}
+
     """
     try:
         dict_obj[key].add(val)
@@ -404,8 +419,8 @@ def add_to_dict_val_set(dict_obj, key, val):
 
 
 def add_many_to_dict_val_set(dict_obj, key, val_list):
-    """Adds the given value list to the set mapped by the given key.
-    If the key is missing from the dict, the given mapping is added.
+    """Adds the given value list to the set mapped by the given key. If the key
+    is missing from the dict, the given mapping is added.
 
     Example
     -------
@@ -416,6 +431,7 @@ def add_many_to_dict_val_set(dict_obj, key, val_list):
     >>> add_many_to_dict_val_set(dict_obj, 'b', [2, 3])
     >>> print(dict_obj['b'])
     {2, 3}
+
     """
     try:
         dict_obj[key].update(val_list)
@@ -424,8 +440,8 @@ def add_many_to_dict_val_set(dict_obj, key, val_list):
 
 
 def append_to_dict_val_list(dict_obj, key, val):
-    """Adds the given value to the list mapped by the given key.
-    If the key is missing from the dict, the given mapping is added.
+    """Adds the given value to the list mapped by the given key. If the key is
+    missing from the dict, the given mapping is added.
 
     Example
     -------
@@ -436,6 +452,7 @@ def append_to_dict_val_list(dict_obj, key, val):
     >>> append_to_dict_val_list(dict_obj, 'b', 5)
     >>> print(dict_obj['b'])
     [5]
+
     """
     try:
         dict_obj[key].append(val)
@@ -444,8 +461,8 @@ def append_to_dict_val_list(dict_obj, key, val):
 
 
 def add_many_to_dict_val_list(dict_obj, key, val_list):
-    """Adds the given value list to the list mapped by the given key.
-    If the key is missing from the dict, the given mapping is added.
+    """Adds the given value list to the list mapped by the given key. If the
+    key is missing from the dict, the given mapping is added.
 
     Example
     -------
@@ -456,6 +473,7 @@ def add_many_to_dict_val_list(dict_obj, key, val_list):
     >>> add_many_to_dict_val_list(dict_obj, 'b', [2, 3])
     >>> print(dict_obj['b'])
     [2, 3]
+
     """
     try:
         dict_obj[key].extend(val_list)
@@ -471,9 +489,9 @@ def get_key_of_max(dict_obj):
     >>> dict_obj = {'a':2, 'b':1}
     >>> print(get_key_of_max(dict_obj))
     a
+
     """
-    return max(
-        dict_obj, key=lambda key: dict_obj[key])
+    return max(dict_obj, key=lambda key: dict_obj[key])
 
 
 def get_keys_of_max_n(dict_obj, n):
@@ -484,13 +502,16 @@ def get_keys_of_max_n(dict_obj, n):
     >>> dict_obj = {'a':2, 'b':1, 'c':5}
     >>> get_keys_of_max_n(dict_obj, 2)
     ['a', 'c']
+
     """
-    return sorted([
-        item[0]
-        for item in sorted(
-            dict_obj.items(), key=lambda item: item[1], reverse=True
-        )[:n]
-    ])
+    return sorted(
+        [
+            item[0]
+            for item in sorted(
+                dict_obj.items(), key=lambda item: item[1], reverse=True
+            )[:n]
+        ]
+    )
 
 
 def get_key_of_min(dict_obj):
@@ -501,9 +522,9 @@ def get_key_of_min(dict_obj):
     >>> dict_obj = {'a':2, 'b':1}
     >>> print(get_key_of_min(dict_obj))
     b
+
     """
-    return min(
-        dict_obj, key=lambda key: dict_obj[key])
+    return min(dict_obj, key=lambda key: dict_obj[key])
 
 
 def get_key_val_of_max(dict_obj):
@@ -514,6 +535,7 @@ def get_key_val_of_max(dict_obj):
     >>> dict_obj = {'a':2, 'b':1}
     >>> print(get_key_val_of_max(dict_obj))
     ('a', 2)
+
     """
     return max(dict_obj.items(), key=lambda item: item[1])
 
@@ -526,13 +548,14 @@ def get_key_val_of_max_key(dict_obj):
     >>> dict_obj = {5: 'g', 3: 'z'}
     >>> print(get_key_val_of_max_key(dict_obj))
     (5, 'g')
+
     """
     return max(dict_obj.items(), key=lambda item: item[0])
 
 
 def unite_dicts(*args):
-    """Unites the given dicts into a single dict mapping each key to the
-    latest value it was mapped to in the order the dicts were given.
+    """Unites the given dicts into a single dict mapping each key to the latest
+    value it was mapped to in the order the dicts were given.
 
     Parameters
     ---------
@@ -552,6 +575,7 @@ def unite_dicts(*args):
     >>> united = unite_dicts(dict_obj, dict_obj2)
     >>> print(sorted(united.items()))
     [('a', 8), ('b', 1), ('c', 5)]
+
     """
     return dict(i for dct in args for i in dct.items())
 
@@ -586,6 +610,7 @@ def deep_merge_dict(base, priority):
     >>> result = deep_merge_dict(base, priority)
     >>> print(sorted(result.items()))
     [('a', {'g': 7}), ('b', 2), ('c', 3), ('e', 5), ('f', 6)]
+
     """
     if not isinstance(base, dict) or not isinstance(priority, dict):
         return priority
@@ -618,6 +643,7 @@ def norm_int_dict(int_dict):
     >>> result = norm_int_dict(dict_obj)
     >>> print(sorted(result.items()))
     [('a', 0.3), ('b', 0.5), ('c', 0.2)]
+
     """
     norm_dict = int_dict.copy()
     val_sum = sum(norm_dict.values())
@@ -627,8 +653,8 @@ def norm_int_dict(int_dict):
 
 
 def sum_num_dicts(dicts, normalize=False):
-    """Sums the given dicts into a single dict mapping each key to the sum
-    of its mappings in all given dicts.
+    """Sums the given dicts into a single dict mapping each key to the sum of
+    its mappings in all given dicts.
 
     Parameters
     ----------
@@ -653,6 +679,7 @@ def sum_num_dicts(dicts, normalize=False):
     >>> result = sum_num_dicts([dict1, dict2], normalize=True)
     >>> print(sorted(result.items()))
     [('a', 0.5), ('b', 0.1), ('c', 0.4)]
+
     """
     sum_dict = {}
     for dicti in dicts:
@@ -664,9 +691,9 @@ def sum_num_dicts(dicts, normalize=False):
 
 
 def sum_dicts(dicts, normalize=False):
-    """Sums the given dicts into a single dict mapping each numberic-valued
-    key to the sum of its mappings in all given dicts. Keys mapping to
-    non-numeric values retain the last value (by the given order).
+    """Sums the given dicts into a single dict mapping each numberic-valued key
+    to the sum of its mappings in all given dicts. Keys mapping to non-numeric
+    values retain the last value (by the given order).
 
     Parameters
     ----------
@@ -680,6 +707,7 @@ def sum_dicts(dicts, normalize=False):
     dict
         A dict where each key is mapped to the sum of its mappings in all
         given dicts.
+
     """
     sum_dict = {}
     for dicti in dicts:
@@ -713,6 +741,7 @@ def reverse_dict(dict_obj):
     >>> dicti = {'a': 1, 'b': 3, 'c': 1}
     >>> reverse_dict(dicti)
     {1: ['a', 'c'], 3: ['b']}
+
     """
     new_dict = {}
     for key in dict_obj:
@@ -740,6 +769,7 @@ def reverse_dict_partial(dict_obj):
     >>> dicti = {'a': 1, 'b': 3}
     >>> reverse_dict_partial(dicti)
     {1: 'a', 3: 'b'}
+
     """
     new_dict = {}
     for key in dict_obj:
@@ -767,6 +797,7 @@ def reverse_list_valued_dict(dict_obj):
     >>> dicti = {'a': [1, 2], 'b': [3, 4]}
     >>> reverse_list_valued_dict(dicti)
     {1: 'a', 2: 'a', 3: 'b', 4: 'b'}
+
     """
     new_dict = {}
     for key in dict_obj:
@@ -780,10 +811,11 @@ def _get_key_reducer(separator):
         if key1 is None:
             return key2
         return key1 + separator + key2
+
     return _key_reducer
 
 
-def flatten_dict(dict_obj, separator='.', flatten_lists=False):
+def flatten_dict(dict_obj, separator=".", flatten_lists=False):
     """Flattens the given dict into a single-level dict with flattend keys.
 
     Parameters
@@ -808,6 +840,7 @@ def flatten_dict(dict_obj, separator='.', flatten_lists=False):
     >>> flat = flatten_dict(dicti)
     >>> sorted(flat.items())
     [('a', 1), ('b.g', 4), ('b.o', 9), ('x.0', 4), ('x.1', 'd')]
+
     """
     reducer = _get_key_reducer(separator)
     flat = {}
@@ -828,6 +861,7 @@ def flatten_dict(dict_obj, separator='.', flatten_lists=False):
                 raise TypeError
             for i, value in enumerate(d):
                 _flatten_key_val(str(i), value, parent)
+
     _flatten(dict_obj)
     return flat
 
@@ -839,14 +873,15 @@ def pprint_int_dict(int_dict, indent=4, descending=False):
     ----------
     int_dict : list
         A dict object mapping each key to an int value.
+
     """
     sorted_tup = sorted(int_dict.items(), key=lambda x: x[1])
     if descending:
         sorted_tup.reverse()
-    print('{')
+    print("{")
     for tup in sorted_tup:
-        print('{}{}: {}'.format(' '*indent, tup[0], tup[1]))
-    print('}')
+        print("{}{}: {}".format(" " * indent, tup[0], tup[1]))
+    print("}")
 
 
 def pprint_dist_dict(int_dict, indent=4, descending=False):
@@ -857,14 +892,15 @@ def pprint_dist_dict(int_dict, indent=4, descending=False):
     int_dict : list
         A dict object mapping each key to an int value between 0 and 1, and all
         values sum to 1.
+
     """
     sorted_tup = sorted(int_dict.items(), key=lambda x: x[1])
     if descending:
         sorted_tup.reverse()
-    print('{')
+    print("{")
     for tup in sorted_tup:
-        print('{}{}: {:.2f} %'.format(' '*indent, tup[0], tup[1]*100))
-    print('}')
+        print("{}{}: {:.2f} %".format(" " * indent, tup[0], tup[1] * 100))
+    print("}")
 
 
 def key_value_nested_generator(dict_obj):
@@ -885,6 +921,7 @@ def key_value_nested_generator(dict_obj):
     >>> dicti = {'a': 1, 'b': {'c': 3, 'd': 4}}
     >>> print(sorted(list(key_value_nested_generator(dicti))))
     [('a', 1), ('c', 3), ('d', 4)]
+
     """
     for key, value in dict_obj.items():
         if isinstance(value, dict):
@@ -912,6 +949,7 @@ def key_tuple_value_nested_generator(dict_obj):
     >>> dicti = {'a': 1, 'b': {'c': 3, 'd': 4}}
     >>> print(sorted(list(key_tuple_value_nested_generator(dicti))))
     [(('a',), 1), (('b', 'c'), 3), (('b', 'd'), 4)]
+
     """
     for key, value in dict_obj.items():
         if isinstance(value, dict):
@@ -923,12 +961,14 @@ def key_tuple_value_nested_generator(dict_obj):
 
 # === Classes ===
 
+
 class CaseInsensitiveDict(dict):
     __doc__ = (
         "A dict whose string keys are case insensitive. \n \n"
         "To construct it from an existing dict use "
         "CaseInsensitiveDict.from_dict().\n\n"
-        "dict documentation:\n\n") + dict.__doc__
+        "dict documentation:\n\n"
+    ) + dict.__doc__
 
     def __setitem__(self, key, value):
         try:

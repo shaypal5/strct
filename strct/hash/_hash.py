@@ -1,15 +1,15 @@
 """Data structure hashing related utility functions."""
 
-import json
 import hashlib
+import json
 from collections.abc import Sequence
 
 
 def _stable_hash_primitive(primitive):
     try:  # assume it's a string...
         return int.from_bytes(
-            hashlib.sha256(primitive.encode('UTF-8')).digest(),
-            byteorder='little',
+            hashlib.sha256(primitive.encode("UTF-8")).digest(),
+            byteorder="little",
         )
     except AttributeError:  # if not, assume it's an int or float
         try:
@@ -20,7 +20,9 @@ def _stable_hash_primitive(primitive):
             except AttributeError:
                 raise TypeError(
                     "Object {} of unhashable type encountered!".format(
-                        primitive))
+                        primitive
+                    )
+                )
 
 
 def _recursive_stable_hash(obj):
@@ -74,13 +76,15 @@ def stable_hash(obj):
     2
     >>> stable_hash(complex(4, 5))
     4
+
     """
     return _recursive_stable_hash(obj)
 
 
 def _seq_but_not_str(obj):
     return (isinstance(obj, Sequence)) and (
-        not isinstance(obj, (str, bytes, bytearray)))
+        not isinstance(obj, (str, bytes, bytearray))
+    )
 
 
 def json_based_stable_hash(obj):
@@ -106,6 +110,7 @@ def json_based_stable_hash(obj):
     -------
     int
         The computed hash value.
+
     """
     encoded_str = json.dumps(
         obj=obj,
@@ -115,8 +120,8 @@ def json_based_stable_hash(obj):
         allow_nan=True,
         cls=None,
         indent=0,
-        separators=(',', ':'),
+        separators=(",", ":"),
         default=None,
         sort_keys=True,
-    ).encode('utf-8')
+    ).encode("utf-8")
     return hashlib.sha256(encoded_str).hexdigest()
