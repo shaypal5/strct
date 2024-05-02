@@ -115,8 +115,8 @@ Created by Shay Palachy  (shay.palachy@gmail.com).
 .. |PyPI-Versions| image:: https://img.shields.io/pypi/pyversions/strct.svg
    :target: https://pypi.python.org/pypi/strct
 
-.. |Build-Status| image:: https://travis-ci.org/shaypal5/strct.svg?branch=master
-  :target: https://travis-ci.org/shaypal5/strct
+.. |Build-Status| image:: https://github.com/shaypal5/strct/actions/workflows/test.yml/badge.svg
+  :target: https://github.com/shaypal5/strct/actions/workflows/test.yml
 
 .. |LICENCE| image:: https://img.shields.io/badge/License-MIT-yellow.svg
   :target: https://pypi.python.org/pypi/strct
