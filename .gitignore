@@ -109,3 +109,7 @@ ENV/
 
 # pytest
 .pytest_cache
+
+# Pipfile doesn't work for me yet
+Pipfile
+Pipfile.lock

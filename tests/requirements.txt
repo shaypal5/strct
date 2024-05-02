@@ -1,0 +1,9 @@
+# todo: add some version range or pinning latest versions
+# tests and coverages
+pytest
+coverage
+pytest-cov
+sortedcontainers
+# to be able to run `python setup.py checkdocs`
+collective.checkdocs
+pygments

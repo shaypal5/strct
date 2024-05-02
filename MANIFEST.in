@@ -1,4 +1,10 @@
-include versioneer.py
-include strct/_version.py
-recursive-include strct *.py
+# Manifest syntax https://docs.python.org/2/distutils/sourcedist.html
+graft wheelhouse
+
+recursive-exclude __pycache__  *.py[cod] *.orig
+include strct/version.info
+include README.rst
+include requirements.txt
 include LICENSE
+
+prune tests
