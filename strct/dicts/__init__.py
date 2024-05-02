@@ -1,5 +1,7 @@
 """Dict-related utility functions."""
 
+from contextlib import suppress
+
 from ._dict import (  # noqa: F401
     # classes
     CaseInsensitiveDict,
@@ -38,6 +40,5 @@ from ._dict import (  # noqa: F401
     unite_dicts,
 )
 
-from contextlib import suppress
 with suppress(NameError):
     del _dict
