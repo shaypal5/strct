@@ -1,5 +1,7 @@
 """Utility pure-Python 3 decorators."""
 
+# ruff: noqa
+
 import strct.dicts
 import strct.hash
 import strct.lists
@@ -8,7 +10,6 @@ import strct.sortedlists
 
 from ._version import *  # noqa: F403
 
-try:
+from contextlib import suppress
+with suppress(NameError):
     del strct
-except NameError:  # pragma: no cover
-    pass
