@@ -17,8 +17,8 @@ _PATH_HERE = os.path.dirname(__file__)
 
 def _load_py_module(fname: str):
     spec = spec_from_file_location(
-        os.path.join("cachier", fname),
-        os.path.join(_PATH_HERE, "cachier", fname),
+        os.path.join("strct", fname),
+        os.path.join(_PATH_HERE, "strct", fname),
     )
     py = module_from_spec(spec)
     spec.loader.exec_module(py)
