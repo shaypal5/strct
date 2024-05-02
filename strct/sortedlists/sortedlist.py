@@ -1,4 +1,4 @@
-"""sortedlist-related utility functions."""
+"""Sortedlist-related utility functions."""
 
 
 def find_point_in_section_list(point, section_list):
@@ -36,19 +36,20 @@ def find_point_in_section_list(point, section_list):
     8
     >>> find_point_in_section_list(31, seclist)
     30
+
     """
     if point < section_list[0] or point > section_list[-1]:
         return None
     if point in section_list:
         if point == section_list[-1]:
             return section_list[-2]
-        ind = section_list.bisect(point)-1
+        ind = section_list.bisect(point) - 1
         if ind == 0:
             return section_list[0]
         return section_list[ind]
     try:
         ind = section_list.bisect(point)
-        return section_list[ind-1]
+        return section_list[ind - 1]
     except IndexError:
         return None
 
@@ -92,6 +93,7 @@ def find_range_ix_in_section_list(start, end, section_list):
     [0, 3]
     >>> find_range_ix_in_section_list(4, 321, seclist)
     [0, 3]
+
     """
     if start > section_list[-1] or end < section_list[0]:
         return [0, 0]
@@ -104,7 +106,9 @@ def find_range_ix_in_section_list(start, end, section_list):
     else:
         end_section = find_point_in_section_list(end, section_list)
     return [
-        section_list.index(start_section), section_list.index(end_section)+1]
+        section_list.index(start_section),
+        section_list.index(end_section) + 1,
+    ]
 
 
 def find_range_in_section_list(start, end, section_list):
@@ -146,9 +150,10 @@ def find_range_in_section_list(start, end, section_list):
     [5, 8, 30]
     >>> find_range_in_section_list(4, 321, seclist)
     [5, 8, 30]
+
     """
     ind = find_range_ix_in_section_list(start, end, section_list)
-    return section_list[ind[0]: ind[1]]
+    return section_list[ind[0] : ind[1]]
 
 
 def find_range_ix_in_point_list(start, end, point_list):
@@ -184,5 +189,6 @@ def find_range_ix_in_point_list(start, end, point_list):
     [0, 3]
     >>> find_range_ix_in_point_list(6, 321, point_list)
     [1, 3]
+
     """
     return [point_list.bisect_left(start), point_list.bisect_right(end)]
