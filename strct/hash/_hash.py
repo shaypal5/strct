@@ -22,7 +22,7 @@ def _stable_hash_primitive(primitive):
                     "Object {} of unhashable type encountered!".format(
                         primitive
                     )
-                )
+                ) from None
 
 
 def _recursive_stable_hash(obj):
@@ -32,7 +32,7 @@ def _recursive_stable_hash(obj):
             try:
                 item_hashes.append(_recursive_stable_hash(item))
             except TypeError:
-                raise TypeError("dict includes unhashable values.")
+                raise TypeError("dict includes unhashable values.") from None
         return hash(frozenset(item_hashes))
     except AttributeError:
         pass  # go on to assume it's an iterable

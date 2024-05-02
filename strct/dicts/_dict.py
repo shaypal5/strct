@@ -66,7 +66,7 @@ def any_in_dict(key_tuple, dict_obj):
     False
 
     """
-    return any([key in dict_obj for key in key_tuple])
+    return any(key in dict_obj for key in key_tuple)
 
 
 def get_nested_val(key_tuple, dict_obj):
@@ -415,7 +415,7 @@ def add_to_dict_val_set(dict_obj, key, val):
     try:
         dict_obj[key].add(val)
     except KeyError:
-        dict_obj[key] = set([val])
+        dict_obj[key] = {val}
 
 
 def add_many_to_dict_val_set(dict_obj, key, val_list):
@@ -615,7 +615,7 @@ def deep_merge_dict(base, priority):
     if not isinstance(base, dict) or not isinstance(priority, dict):
         return priority
     result = copy.deepcopy(base)
-    for key in priority.keys():
+    for key in priority:
         if key in base:
             result[key] = deep_merge_dict(base[key], priority[key])
         else:
@@ -856,9 +856,9 @@ def flatten_dict(dict_obj, separator=".", flatten_lists=False):
         try:
             for key, val in d.items():
                 _flatten_key_val(key, val, parent)
-        except AttributeError:
+        except AttributeError as e:
             if isinstance(d, (str, bytes)):
-                raise TypeError
+                raise TypeError from e
             for i, value in enumerate(d):
                 _flatten_key_val(str(i), value, parent)
 
@@ -925,8 +925,8 @@ def key_value_nested_generator(dict_obj):
     """
     for key, value in dict_obj.items():
         if isinstance(value, dict):
-            for key, value in key_value_nested_generator(value):
-                yield key, value
+            for key, val in key_value_nested_generator(value):
+                yield key, val
         else:
             yield key, value
 
@@ -953,10 +953,10 @@ def key_tuple_value_nested_generator(dict_obj):
     """
     for key, value in dict_obj.items():
         if isinstance(value, dict):
-            for nested_key, value in key_tuple_value_nested_generator(value):
-                yield tuple([key]) + nested_key, value
+            for nested_key, val in key_tuple_value_nested_generator(value):
+                yield (key,) + nested_key, val
         else:
-            yield tuple([key]), value
+            yield (key,), value
 
 
 # === Classes ===
