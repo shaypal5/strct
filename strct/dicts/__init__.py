@@ -17,6 +17,8 @@ from ._dict import (  # noqa: F401
     get_key_val_of_max_key,
     get_keys_of_max_n,
     # functions
+    get_first_val,
+    any_in_dict,
     get_nested_val,
     in_nested_dicts,
     increment_dict_val,
