@@ -60,7 +60,7 @@ repos:
   #      - id: mypy
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.11.4
+    rev: v0.12.2
     hooks:
       # use black formatting
       - id: ruff-format
