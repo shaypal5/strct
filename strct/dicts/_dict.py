@@ -186,7 +186,7 @@ def in_nested_dicts(key_tuple, dict_obj):
     Returns
     -------
     True : object
-        If some value if nested in the given dict by the given keys tupe, in
+        If some value if nested in the given dict by the given keys tuple, in
         order. False otherwise.
 
     Example
@@ -226,9 +226,7 @@ def get_alternative_nested_val(key_tuple, dict_obj):
     # print('key_tuple: {}'.format(key_tuple))
     # print('dict_obj: {}'.format(dict_obj))
     top_keys = (
-        key_tuple[0]
-        if isinstance(key_tuple[0], (list, tuple))
-        else [key_tuple[0]]
+        key_tuple[0] if isinstance(key_tuple[0], (list, tuple)) else [key_tuple[0]]
     )
     for key in top_keys:
         try:
