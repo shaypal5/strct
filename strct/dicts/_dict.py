@@ -186,7 +186,7 @@ def in_nested_dicts(key_tuple, dict_obj):
     Returns
     -------
     True : object
-        If some value if nested in the given dict by the given keys tupe, in
+        If some value if nested in the given dict by the given keys tuple, in
         order. False otherwise.
 
     Example
