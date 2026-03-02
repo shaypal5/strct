@@ -69,4 +69,3 @@ def test_json_based_stable_hash():
     dict2 = {"b": 2, "a": 1}
     assert json_based_stable_hash(dict1) == json_based_stable_hash(dict2)
     assert isinstance(json_based_stable_hash(dict1), str)
-

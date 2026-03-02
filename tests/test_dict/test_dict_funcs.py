@@ -306,4 +306,3 @@ def test_pprint_dist_dict(capsys):
     pprint_dist_dict({"a": 0.7, "b": 0.3}, descending=True)
     captured = capsys.readouterr()
     assert "a" in captured.out
-

@@ -16,10 +16,30 @@ def test_all_but():
 
 def test_order_preserving_single_index_shift():
     arr = ["a", "b", "c", "d"]
-    assert order_preserving_single_index_shift(arr, 2, 0) == ["c", "a", "b", "d"]
-    assert order_preserving_single_index_shift(arr, 2, 3) == ["a", "b", "d", "c"]
-    assert order_preserving_single_index_shift(arr, 0, 2) == ["b", "c", "a", "d"]
-    assert order_preserving_single_index_shift(arr, 3, 1) == ["a", "d", "b", "c"]
+    assert order_preserving_single_index_shift(arr, 2, 0) == [
+        "c",
+        "a",
+        "b",
+        "d",
+    ]
+    assert order_preserving_single_index_shift(arr, 2, 3) == [
+        "a",
+        "b",
+        "d",
+        "c",
+    ]
+    assert order_preserving_single_index_shift(arr, 0, 2) == [
+        "b",
+        "c",
+        "a",
+        "d",
+    ]
+    assert order_preserving_single_index_shift(arr, 3, 1) == [
+        "a",
+        "d",
+        "b",
+        "c",
+    ]
 
 
 def test_order_preserving_single_element_shift():

@@ -2,7 +2,7 @@
 
 from sortedcontainers import SortedList
 
-from strct.sortedlists import (  # noqa: F401
+from strct.sortedlists import (
     find_point_in_section_list,
     find_range_in_section_list,
     find_range_ix_in_point_list,
@@ -50,4 +50,3 @@ def test_find_range_ix_in_point_list():
     assert find_range_ix_in_point_list(4, 15, point_list) == [0, 3]
     assert find_range_ix_in_point_list(4, 321, point_list) == [0, 3]
     assert find_range_ix_in_point_list(6, 321, point_list) == [1, 3]
-
