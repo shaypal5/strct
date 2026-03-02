@@ -35,12 +35,12 @@ def _load_requirements(
     path_dir: str = _PATH_HERE, file_name: str = "requirements.txt"
 ) -> list:
     with open(os.path.join(path_dir, file_name)) as fp:
-        lines = fp.readlines()
-    return [
-        line.strip()
-        for line in lines
-        if line.strip() and not line.startswith("#")
-    ]
+        reqs = [
+            req
+            for line in fp.readlines()
+            if (req := line.strip()) and not req.startswith("#")
+        ]
+    return reqs
 
 
 setup(
