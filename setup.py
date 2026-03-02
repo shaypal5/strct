@@ -9,7 +9,6 @@
 import os.path
 from importlib.util import module_from_spec, spec_from_file_location
 
-from pkg_resources import parse_requirements
 from setuptools import find_packages, setup
 
 _PATH_HERE = os.path.dirname(__file__)
@@ -36,8 +35,12 @@ def _load_requirements(
     path_dir: str = _PATH_HERE, file_name: str = "requirements.txt"
 ) -> list:
     with open(os.path.join(path_dir, file_name)) as fp:
-        reqs = parse_requirements(fp.readlines())
-    return list(map(str, reqs))
+        reqs = [
+            req
+            for line in fp.readlines()
+            if (req := line.strip()) and not req.startswith("#")
+        ]
+    return reqs
 
 
 setup(
@@ -54,7 +57,7 @@ setup(
     license="MIT",
     packages=find_packages(exclude=["dist", "docs", "tests"]),
     include_package_data=True,
-    python_requires=">=3.8",
+    python_requires=">=3.10",
     install_requires=_load_requirements(),
     platforms=["any"],
     keywords=["python", "list", "dict", "set", "sortedlist"],
@@ -65,8 +68,6 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.8",
-        "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
