@@ -315,10 +315,9 @@ def subdict_by_keys(dict_obj, keys):
 
     Example:
     --------
-    >>> dict_obj = {'a': 1, 'b': 2, 'c': 3, 'd': 4}
-    >>> subdict = subdict_by_keys(dict_obj, ['b', 'd', 'e'])
-    >>> print(sorted(subdict.items()))
-    [('b', 2), ('d', 4)]
+    >>> dict_obj = {'b': 2, 'd': 4}
+    >>> subdict_by_keys(dict_obj, ['b', 'd', 'e'])
+    {'b': 2, 'd': 4}
 
     """
     return {k: dict_obj[k] for k in set(keys).intersection(dict_obj.keys())}
@@ -570,11 +569,10 @@ def unite_dicts(*args):
 
     Example:
     --------
-    >>> dict_obj = {'a':2, 'b':1}
-    >>> dict_obj2 = {'a':8, 'c':5}
-    >>> united = unite_dicts(dict_obj, dict_obj2)
-    >>> print(sorted(united.items()))
-    [('a', 8), ('b', 1), ('c', 5)]
+    >>> dict_obj = {'a': 2, 'b': 1}
+    >>> dict_obj2 = {'a': 8, 'c': 5}
+    >>> unite_dicts(dict_obj, dict_obj2)
+    {'a': 8, 'b': 1, 'c': 5}
 
     """
     return dict(i for dct in args for i in dct.items())
@@ -607,9 +605,8 @@ def deep_merge_dict(base, priority):
     --------
     >>> base = {'a': 1, 'b': 2, 'c': {'d': 4}, 'e': 5}
     >>> priority = {'a': {'g': 7}, 'c': 3, 'e': 5, 'f': 6}
-    >>> result = deep_merge_dict(base, priority)
-    >>> print(sorted(result.items()))
-    [('a', {'g': 7}), ('b', 2), ('c', 3), ('e', 5), ('f', 6)]
+    >>> deep_merge_dict(base, priority)
+    {'a': {'g': 7}, 'b': 2, 'c': 3, 'e': 5, 'f': 6}
 
     """
     if not isinstance(base, dict) or not isinstance(priority, dict):
@@ -640,9 +637,8 @@ def norm_int_dict(int_dict):
     Example
     -------
     >>> dict_obj = {'a': 3, 'b': 5, 'c': 2}
-    >>> result = norm_int_dict(dict_obj)
-    >>> print(sorted(result.items()))
-    [('a', 0.3), ('b', 0.5), ('c', 0.2)]
+    >>> norm_int_dict(dict_obj)
+    {'a': 0.3, 'b': 0.5, 'c': 0.2}
 
     """
     norm_dict = int_dict.copy()
@@ -672,13 +668,11 @@ def sum_num_dicts(dicts, normalize=False):
     Example
     -------
     >>> dict1 = {'a': 3, 'b': 2}
-    >>> dict2 = {'a':7, 'c': 8}
-    >>> result = sum_num_dicts([dict1, dict2])
-    >>> print(sorted(result.items()))
-    [('a', 10), ('b', 2), ('c', 8)]
-    >>> result = sum_num_dicts([dict1, dict2], normalize=True)
-    >>> print(sorted(result.items()))
-    [('a', 0.5), ('b', 0.1), ('c', 0.4)]
+    >>> dict2 = {'a': 7, 'c': 8}
+    >>> sum_num_dicts([dict1, dict2])
+    {'a': 10, 'b': 2, 'c': 8}
+    >>> sum_num_dicts([dict1, dict2], normalize=True)
+    {'a': 0.5, 'b': 0.1, 'c': 0.4}
 
     """
     sum_dict = {}
@@ -837,9 +831,8 @@ def flatten_dict(dict_obj, separator=".", flatten_lists=False):
     Example
     -------
     >>> dicti = {'a': 1, 'b': {'g': 4, 'o': 9}, 'x': [4, 'd']}
-    >>> flat = flatten_dict(dicti)
-    >>> sorted(flat.items())
-    [('a', 1), ('b.g', 4), ('b.o', 9), ('x.0', 4), ('x.1', 'd')]
+    >>> flatten_dict(dicti)
+    {'a': 1, 'b.g': 4, 'b.o': 9, 'x.0': 4, 'x.1': 'd'}
 
     """
     reducer = _get_key_reducer(separator)
@@ -919,7 +912,7 @@ def key_value_nested_generator(dict_obj):
     Example
     -------
     >>> dicti = {'a': 1, 'b': {'c': 3, 'd': 4}}
-    >>> print(sorted(list(key_value_nested_generator(dicti))))
+    >>> sorted(key_value_nested_generator(dicti))
     [('a', 1), ('c', 3), ('d', 4)]
 
     """
@@ -947,7 +940,7 @@ def key_tuple_value_nested_generator(dict_obj):
     Example
     -------
     >>> dicti = {'a': 1, 'b': {'c': 3, 'd': 4}}
-    >>> print(sorted(list(key_tuple_value_nested_generator(dicti))))
+    >>> sorted(key_tuple_value_nested_generator(dicti))
     [(('a',), 1), (('b', 'c'), 3), (('b', 'd'), 4)]
 
     """
@@ -986,7 +979,7 @@ class CaseInsensitiveDict(dict):
         try:
             return super(CaseInsensitiveDict, self).__contains__(key.lower())
         except AttributeError:
-            return super(CaseInsensitiveDict, self).__contains_(key)
+            return super(CaseInsensitiveDict, self).__contains__(key)
 
     @staticmethod
     def from_dict(dict_obj):

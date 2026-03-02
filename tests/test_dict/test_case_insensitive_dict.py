@@ -20,3 +20,9 @@ def test_from_dict():
     assert dic["A"] == 4
     assert dic["c"]["G"] == 8
     assert dic["C"][2] == 1
+
+
+def test_contains_non_string_key():
+    dic = CaseInsensitiveDict()
+    dic[8] = 5
+    assert 8 in dic
