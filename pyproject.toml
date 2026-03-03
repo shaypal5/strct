@@ -10,7 +10,6 @@ requires = ["setuptools", "wheel"]
 testpaths = ["strct", "tests"]
 norecursedirs=["dist", "build", ".tox"]
 addopts = [
-    "--doctest-modules",
     "--color=yes",
     "--cov=strct",
     "--cov-report=term",
